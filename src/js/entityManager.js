@@ -126,8 +126,22 @@ render: function(ctx) {
         }
         debugY += 10;
     }
-}
+},
 
+
+allEntities: function() {
+    var res = [];
+    for(var c = 0; c < this._categories.length; c++) {
+        var aCategory = this._categories[c];
+
+        for(var i = 0; i < aCategory.length; i++) {
+
+            res.push(aCategory[i]);
+            
+        }
+    }
+    return res;
+},
 }
 
 // Some deferred setup which needs the object to have been created first
