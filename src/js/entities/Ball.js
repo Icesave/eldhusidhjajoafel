@@ -71,10 +71,9 @@ Ball.prototype.getRadius = function () {
 Ball.prototype.takeBulletHit = function () {
     this.kill();
     
-    if (this.scale > 0.25) {
+    if (this.scale > 0.125) {
         this._spawnFragment(1, this.origYVel/2);
         this._spawnFragment(-1, this.origYVel/2);
-        
     } else {
     }
 };
