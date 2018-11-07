@@ -52,8 +52,6 @@ Bullet.prototype.update = function (du) {
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);   
 
-    this.wrapPosition();
-        
     // (Re-)Register
 
     spatialManager.register(this);
