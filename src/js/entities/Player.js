@@ -97,10 +97,19 @@ Player.prototype.reset = function () {
 
 Player.prototype.updatePlayer = function (du) {
     if (keys[this.KEY_LEFT]) {
-        this.cx -= 5;
+        
+        if (this.cx == 30) {
+            this.cx = this.cx;
+        } else {
+            this.cx -= 5;
+        }
     }
     if (keys[this.KEY_RIGHT]) {
-        this.cx += 5;
+        if (this.cx == g_canvas.width-30) {
+            this.cx = this.cx;
+        } else {
+            this.cx += 5;
+        }
     }
 };
 
