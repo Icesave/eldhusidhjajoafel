@@ -75,9 +75,7 @@ Player.prototype.update = function (du) {
 };
 
 Player.prototype.computeSubStep = function (du) {
-    
-        this.updateRotation(du);
-    
+
 };
 
 

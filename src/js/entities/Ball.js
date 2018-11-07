@@ -18,10 +18,8 @@ var g_activeBalls = [];
 function Ball(descr) {
 
     // Common inherited setup logic from Entity
+    
     this.setup(descr);
-
-    this.randomisePosition();
-    this.randomiseVelocity();
       
     // Default sprite and scale, if not otherwise specified
     this.sprite = this.sprite || g_sprites.ball;
@@ -63,9 +61,6 @@ Ball.prototype.update = function (du) {
       this.nextX = prevX + this.xVel * du;
       this.nextY = prevY + this.yVel * du;
 
-    // TODO: YOUR STUFF HERE! --- Unregister and check for death
-    spatialManager.unregister(this);
-    
     if (this._isDeadNow) {
         return entityManager.KILL_ME_NOW;
     }
@@ -77,11 +72,6 @@ Ball.prototype.update = function (du) {
           this.xVel *= -1;
       }
     
-    // TODO: YOUR STUFF HERE! --- (Re-)Register
-    spatialManager.register(this);
-    // *Actually* update my position
-    // ...using whatever velocity I've ended up with
-    //
     this.cx += this.xVel * du;
     this.cy += this.yVel * du;
 

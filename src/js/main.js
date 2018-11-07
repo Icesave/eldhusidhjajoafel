@@ -49,7 +49,7 @@ var main = {
     }
 
     //gatherInputs();
-    //update(dt);
+    update(dt);
     render(g_ctx);
   },
 
