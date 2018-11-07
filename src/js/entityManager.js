@@ -30,12 +30,13 @@ var entityManager = {
 _player   : [],
 _bullets : [],
 _balls : [],
+_bricks : [],
 
 // "PRIVATE" METHODS
 
 _generateBall : function() {
-    
-    this.generateBall({cx: 350, cy: 500, xVel: 2, yVel: -10});
+  
+  this.generateBall({cx: 350, cy: 500, xVel: 2, yVel: -10});
 },
 
 _forEachOf: function(aCategory, fn) {
@@ -55,12 +56,16 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._player, this._bullets, this._balls];
+    this._categories = [this._player, this._bullets, this._balls, this._bricks];
 },
 
 init: function() {
     this._generateBall();
-    
+    this.generateBrick({
+      cx : 200, cy : 200,
+      strokeStyle : "#790000",
+      fillStyle : "#D20000"
+    });
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -72,6 +77,10 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
 
 generateBall : function(descr) {
     this._balls.push(new Ball(descr));
+},
+
+generateBrick : function(descr) {
+    this._bricks.push(new Brick(descr));  
 },
 
 generatePlayer : function(descr) {

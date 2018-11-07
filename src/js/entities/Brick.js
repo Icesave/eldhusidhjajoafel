@@ -21,11 +21,21 @@ Brick.prototype.update = function () {
 };
 
 Brick.prototype.render = function (ctx) {
-    // (cx, cy) is the centre; must offset it for drawing
-    ctx.fillRect(this.cx - this.halfWidth,
-                 this.cy - this.halfHeight,
-                 this.halfWidth * 2,
-                 this.halfHeight * 2);                          
+    ctx.save();
+    ctx.fillStyle = this.fillStyle;
+    ctx.srokeStyle = this.strokeStyle;  
+    ctx.fillRect(
+      this.cx - this.halfWidth,
+      this.cy - this.halfHeight,
+      this.halfWidth * 2,
+      this.halfHeight * 2);
+    ctx.strokeRect(
+      this.cx - this.halfWidth,
+      this.cy - this.halfHeight,
+      this.halfWidth * 2,
+      this.halfHeight * 2);
+    ctx.restore();
+             
 };
 
 // Geyma?
@@ -49,17 +59,3 @@ Brick.prototype.collidesWith = function (prevX, prevY,
     return false;
 };
 */ 
-
-//Brick 1
-
-var gBrick1 = new Brick({
-    cx : 50,
-    cy : 100,             
-});
-
-//Brick 2
-
-var gBrick2 = new Brick({
-    cx : 260,
-    cy : 200,                  
-});
