@@ -25,6 +25,7 @@ function Player(descr) {
     
     // Set normal drawing scale, and warp state off
     this.scale = 1;
+    this.rotation = 0;
 };
 
 Player.prototype = new Entity();
@@ -78,21 +79,11 @@ Player.prototype.maybeFireBullet = function () {
     if (keys[this.KEY_FIRE]) {
     
         // TODO: player shoots bullet
-        var dX = +Math.sin(this.rotation);
-        var dY = -Math.cos(this.rotation);
-        var launchDist = this.getRadius() * 1.2;
         
-        var relVel = this.launchVel;
-        var relVelX = dX * relVel;
-        var relVelY = dY * relVel;
-
         entityManager.fireBullet(
-           this.cx + dX * launchDist, this.cy + dY * launchDist,
-           this.velX + relVelX, this.velY + relVelY,
-           this.rotation);
+           this.cx, this.cy-this.getRadius());
            
     }
-    
 };
 
 Player.prototype.getRadius = function () {
