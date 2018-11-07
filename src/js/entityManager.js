@@ -35,7 +35,7 @@ _balls : [],
 
 _generateBall : function() {
     
-    this.generateBall({cx: 200, cy: 200, xVel: 2, yVel: 0});
+    this.generateBall({cx: 400, cy: 400, xVel: 2, yVel: -10});
 },
 
 _forEachOf: function(aCategory, fn) {

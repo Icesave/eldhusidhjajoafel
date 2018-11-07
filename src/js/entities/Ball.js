@@ -21,6 +21,7 @@ function Ball(descr) {
     
     this.setup(descr);
       
+    this.origYVel = this.yVel;
     // Default sprite and scale, if not otherwise specified
     this.sprite = this.sprite || g_sprites.ball;
     this.scale  = this.scale  || 0.5;
@@ -48,8 +49,11 @@ Ball.prototype.update = function (du) {
 
     var r = this.getRadius();
     // Bounce off top, bottom and side edges
-    if (this.nextY < r || this.nextY > g_canvas.height - r) {
+    if(this.nextY < r) {
         this.yVel *= -1;
+    }  
+    if(this.nextY > g_canvas.height - r) {
+        this.yVel = this.origYVel;
     }
     if (this.nextX < r || this.nextX > g_canvas.width - r) {
         this.xVel *= -1;
@@ -67,20 +71,19 @@ Ball.prototype.getRadius = function () {
 Ball.prototype.takeBulletHit = function () {
     this.kill();
     
-    if (this.scale > 0.25) {
-        this._spawnFragment();
-        this._spawnFragment();
-        
-        this.splitSound.play();
+    if (this.scale > 0.125) {
+        this._spawnFragment(1, this.origYVel/2);
+        this._spawnFragment(-1, this.origYVel/2);
     } else {
-        this.evaporateSound.play();
     }
 };
 
-Ball.prototype._spawnFragment = function () {
+Ball.prototype._spawnFragment = function(xVel, yVel) {
     entityManager.generateBall({
         cx : this.cx,
         cy : this.cy,
+        xVel : xVel,
+        yVel : yVel,
         scale : this.scale/2
     });
 };
