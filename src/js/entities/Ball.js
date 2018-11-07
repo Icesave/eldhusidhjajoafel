@@ -92,18 +92,3 @@ Ball.prototype.render = function (ctx) {
     
     fillCircle(ctx, this.cx, this.cy, this.radius, this.color);
 };
-
-  //Delete later
-var g_ball = new Ball({
-    cx: 200,
-    cy: 200,
-    nextX : null,
-    nextY : null,
-    radius: 30,
-    color: "yellow",
-  
-    xVel: 0,
-    yVel: 0,
-    BASE_xVel : 5,
-    BASE_yVel : 8,
-  });

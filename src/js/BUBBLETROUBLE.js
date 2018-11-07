@@ -104,7 +104,8 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "https://notendur.hi.is/~pk/308G/images/ship.png"
+        player   : "https://notendur.hi.is/~pk/308G/images/ship.png",
+        ball     : "imgs/ball.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -118,6 +119,9 @@ function preloadDone() {
     
 
     g_sprites.bullet = new Sprite(g_images.player);
+
+    g_sprites.ball = new Sprite(g_images.ball);
+
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
