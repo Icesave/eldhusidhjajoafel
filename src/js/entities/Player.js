@@ -54,13 +54,7 @@ Player.prototype.update = function (du) {
 
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
-    // Perform movement substeps
-    var steps = this.numSubSteps;
-    var dStep = du / steps;
-    for (var i = 0; i < steps; ++i) {
-        this.computeSubStep(dStep);
-    }
-
+    this.updatePlayer();
     // Handle firing
     this.maybeFireBullet();
 
