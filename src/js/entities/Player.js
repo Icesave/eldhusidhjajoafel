@@ -24,7 +24,7 @@ function Player(descr) {
     this.sprite = this.sprite || g_sprites.player;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 1;
+    this.scale = 1;
 };
 
 Player.prototype = new Entity();
@@ -115,4 +115,7 @@ Player.prototype.render = function (ctx) {
     // pass my scale into the sprite, for drawing
     this.sprite.scale = this._scale;
     this.sprite.scale = origScale;
+    this.sprite.drawCentredAt(
+        ctx, this.cx, this.cy, this.rotation
+    );
 };
