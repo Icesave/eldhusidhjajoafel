@@ -74,7 +74,7 @@ function render(ctx) {
     if(eatKey(INFO)) {
       console.log("DEBUG: All Entities");
       entityManager.allEntities().forEach(function(entity) {
-        console.dir(+entity);
+        console.dir(entity);
       });
       console.log("---------------------------");
     }
@@ -97,7 +97,7 @@ function render(ctx) {
   }
 
 
-  // Check if the game is in sync with the flipity flop box
+  // Check if the game is in sync with the flipity floppy box
   if(g_doFlipFlop) {
     var boxX = 250,
         boxY = g_isUpdateOdd ? 100 : 200;
