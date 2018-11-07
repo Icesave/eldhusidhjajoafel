@@ -19,6 +19,9 @@ function Ball(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+
+    this.randomisePosition();
+    this.randomiseVelocity();
       
     // Default sprite and scale, if not otherwise specified
     this.sprite = this.sprite || g_sprites.ball;
@@ -26,6 +29,30 @@ function Ball(descr) {
 
 };
 Ball.prototype = new Entity();
+
+Ball.prototype.randomisePosition = function () {
+    // Ball randomisation defaults (if nothing otherwise specified)
+    this.cx = this.cx || Math.random() * g_canvas.width;
+    this.cy = this.cy || Math.random() * g_canvas.height;
+    this.rotation = this.rotation || 0;
+};
+
+Ball.prototype.randomiseVelocity = function () {
+    var MIN_SPEED = 20,
+        MAX_SPEED = 70;
+
+    var speed = util.randRange(MIN_SPEED, MAX_SPEED) / SECS_TO_NOMINALS;
+    var dirn = Math.random() * consts.FULL_CIRCLE;
+
+    this.velX = this.velX || speed * Math.cos(dirn);
+    this.velY = this.velY || speed * Math.sin(dirn);
+
+    var MIN_ROT_SPEED = 0.5,
+        MAX_ROT_SPEED = 2.5;
+
+    this.velRot = this.velRot ||
+        util.randRange(MIN_ROT_SPEED, MAX_ROT_SPEED) / SECS_TO_NOMINALS;
+};
 
 Ball.prototype.update = function (du) {
       // Remember my previous position
@@ -89,6 +116,7 @@ Ball.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
     this.sprite.scale = this.scale;
-    
-    fillCircle(ctx, this.cx, this.cy, this.radius, this.color);
+    this.sprite.drawWrappedCentredAt(
+        ctx, this.cx, this.cy, this.rotation
+    );
 };
