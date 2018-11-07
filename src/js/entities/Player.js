@@ -25,6 +25,7 @@ function Player(descr) {
     
     // Set normal drawing scale, and warp state off
     this.scale = 1;
+    this.rotation = 0;
 };
 
 Player.prototype = new Entity();
@@ -78,9 +79,11 @@ Player.prototype.maybeFireBullet = function () {
     if (keys[this.KEY_FIRE]) {
     
         // TODO: player shoots bullet
+        
+        entityManager.fireBullet(
+           this.cx, this.cy-this.getRadius());
            
     }
-    
 };
 
 Player.prototype.getRadius = function () {

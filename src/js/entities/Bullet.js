@@ -45,15 +45,19 @@ Bullet.prototype.update = function (du) {
     this.lifeSpan -= du;
     if (this.lifeSpan < 0) return entityManager.KILL_ME_NOW;
 
-    this.cx += this.velX * du;
-    this.cy += this.velY * du;
+    if(this.cy >= 25 ){
+        this.cy -= 10 * du;
+    }
+
+    if (this.cy < 25 ) {
+        return entityManager.KILL_ME_NOW;
+    }
+    
 
     this.rotation += 1 * du;
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);   
 
-    this.wrapPosition();
-        
     // (Re-)Register
 
     spatialManager.register(this);
