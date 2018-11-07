@@ -72,19 +72,19 @@ Ball.prototype.takeBulletHit = function () {
     this.kill();
     
     if (this.scale > 0.25) {
-        this._spawnFragment(1);
-        this._spawnFragment(-1);
+        this._spawnFragment(1, this.origYVel/2);
+        this._spawnFragment(-1, this.origYVel/2);
         
     } else {
     }
 };
 
-Ball.prototype._spawnFragment = function(offset) {
+Ball.prototype._spawnFragment = function(xVel, yVel) {
     entityManager.generateBall({
         cx : this.cx,
         cy : this.cy,
-        xVel : offset+this.xVel,
-        yVel : this.origYVel,
+        xVel : xVel,
+        yVel : yVel,
         scale : this.scale/2
     });
 };
