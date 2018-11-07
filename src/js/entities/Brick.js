@@ -52,14 +52,14 @@ Brick.prototype.collidesWith = function (prevX, prevY,
 
 //Brick 1
 
-var gBrick1 = newBrick({
+var gBrick1 = new Brick({
     cx : 50,
     cy : 100,             
 });
 
 //Brick 2
 
-var gBrick2 = newBrick({
+var gBrick2 = new Brick({
     cx : 260,
     cy : 200,                  
 });

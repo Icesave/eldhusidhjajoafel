@@ -22,7 +22,7 @@ var g_frameCounter = 1;
 
 var INFO = 'I'.charCodeAt(0); 
 
-var TOGGLE_DEBUGMODE = 'D'.charCodeAt(0);
+var TOGGLE_DEBUGMODE = 'L'.charCodeAt(0);
 var TOGGLE_CLEAR = 'C'.charCodeAt(0);
 var TOGGLE_BOX = 'B'.charCodeAt(0);
 var TOGGLE_UNDO_BOX = 'U'.charCodeAt(0);
@@ -40,8 +40,19 @@ function render(ctx) {
   // Process various option toggles
   if(eatKey(TOGGLE_DEBUGMODE)) {
     g_debugMode = !g_debugMode;
-    console.log("DEBUG: " + g_debugMode);
-    console.log("---------------------------");
+    if(g_debugMode) {
+      console.log("===========================");
+      console.log("DEBUG MODE - " + g_debugMode);
+      console.log("K = Destroy a ball closest to the mouse");
+      console.log("C = Toggle clear canvas before each render");
+      console.log("B = Toggle undo box");
+      console.log("U = Toggle undo box");
+      console.log("F =");
+      console.log("R = Toggle");
+      console.log("I = See info about all the current entities");
+      console.log("X = Toggle collision circle");
+      console.log("---------------------------");
+    }
   }
 
   if(g_debugMode) { // Only allow debug option if debug mode is on
