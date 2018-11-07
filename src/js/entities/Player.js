@@ -24,7 +24,7 @@ function Player(descr) {
     this.sprite = this.sprite || g_sprites.player;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 1;
+    this.scale = 1;
 };
 
 Player.prototype = new Entity();
@@ -54,13 +54,7 @@ Player.prototype.update = function (du) {
 
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
-    // Perform movement substeps
-    var steps = this.numSubSteps;
-    var dStep = du / steps;
-    for (var i = 0; i < steps; ++i) {
-        this.computeSubStep(dStep);
-    }
-
+    this.updatePlayer();
     // Handle firing
     this.maybeFireBullet();
 
@@ -103,10 +97,19 @@ Player.prototype.reset = function () {
 
 Player.prototype.updatePlayer = function (du) {
     if (keys[this.KEY_LEFT]) {
-        this.cx -= 5;
+        
+        if (this.cx == 30) {
+            this.cx = this.cx;
+        } else {
+            this.cx -= 5;
+        }
     }
     if (keys[this.KEY_RIGHT]) {
-        this.cx += 5;
+        if (this.cx == g_canvas.width-30) {
+            this.cx = this.cx;
+        } else {
+            this.cx += 5;
+        }
     }
 };
 
@@ -115,4 +118,7 @@ Player.prototype.render = function (ctx) {
     // pass my scale into the sprite, for drawing
     this.sprite.scale = this._scale;
     this.sprite.scale = origScale;
+    this.sprite.drawCentredAt(
+        ctx, this.cx, this.cy, this.rotation
+    );
 };

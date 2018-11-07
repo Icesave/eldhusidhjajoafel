@@ -29,7 +29,7 @@ function createInitialPlayer() {
 
    entityManager.generatePlayer({
        cx : 200,
-       cy : 200
+       cy : 520
    });
    
 }
@@ -104,7 +104,7 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "https://notendur.hi.is/~pk/308G/images/ship.png",
+        player   : "imgs/backthick.png",
         ball     : "imgs/ball.png"
     };
 
