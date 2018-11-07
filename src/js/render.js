@@ -82,18 +82,18 @@ function render(ctx) {
 
   // To clear or not to clear 
   if(g_doClear) { 
-    //util.clearCanvas(ctx);
+    util.clearCanvas(ctx);
   }
 
   // Box to demonstrate that it is always 
   // deleted by the subsequent "undo"
   if(g_doBox) {
-    //util.fillBox(ctx, 200, 200, 50, 50, "red");
+    util.fillBox(ctx, 200, 200, 50, 50, "red");
   }
 
   // Render the game
   if(g_doRender) { 
-    //renderSimulation(ctx);
+    renderSimulation(ctx);
   }
 
 
