@@ -25,21 +25,6 @@ function Ball(descr) {
     this.scale  = this.scale  || 1;
 
 };
-var g_ball = new Ball({
-  cx: 500,
-  cy: 630,
-  nextX : null,
-  nextY : null,
-  radius: 30,
-  color: "yellow",
-
-  xVel: 0,
-  yVel: 0,
-  BASE_xVel : 5,
-  BASE_yVel : 8,
-});
-g_activeBalls.push(g_ball);
-
 Ball.prototype = new Entity();
 
 Ball.prototype.update = function (du) {
@@ -79,12 +64,6 @@ Ball.prototype.getRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.9;
 };
 
-// HACKED-IN AUDIO (no preloading)
-Ball.prototype.splitSound = new Audio(
-  "sounds/rockSplit.ogg");
-Ball.prototype.evaporateSound = new Audio(
-  "sounds/rockEvaporate.ogg");
-
 Ball.prototype.takeBulletHit = function () {
     this.kill();
     
@@ -113,3 +92,18 @@ Ball.prototype.render = function (ctx) {
     
     fillCircle(ctx, this.cx, this.cy, this.radius, this.color);
 };
+
+  //Delete later
+var g_ball = new Ball({
+    cx: 200,
+    cy: 200,
+    nextX : null,
+    nextY : null,
+    radius: 30,
+    color: "yellow",
+  
+    xVel: 0,
+    yVel: 0,
+    BASE_xVel : 5,
+    BASE_yVel : 8,
+  });
