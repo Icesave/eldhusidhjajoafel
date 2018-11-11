@@ -73,16 +73,18 @@ Player.prototype.computeSubStep = function (du) {
 
 };
 
+Player.prototype.isShooting = false;
 
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
     
         // TODO: player shoots bullet
+        if (!this.isShooting) {
+            this.isShooting = true;
+            entityManager.fireBullet(this.cx, this.cy-this.getRadius());
+        } 
         
-        entityManager.fireBullet(
-           this.cx, this.cy-this.getRadius());
-           
     }
 };
 
