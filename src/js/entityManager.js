@@ -68,11 +68,18 @@ init: function() {
     });
 },
 
-fireBullet: function(cx, cy, velX, velY, rotation) {
+fireBullet: function(cx, cy) {
     this._bullets.push(new Bullet({
         cx   : cx,
         cy   : cy
     }));
+    
+},
+
+bulletDies: function() {
+    
+    this._player[0].isShooting = false;
+       
 },
 
 generateBall : function(descr) {
@@ -86,7 +93,6 @@ generateBrick : function(descr) {
 generatePlayer : function(descr) {
     this._player.push(new Player(descr));
 },
-
 
 resetPlayer: function() {
     this._forEachOf(this._player, Player.prototype.reset);
