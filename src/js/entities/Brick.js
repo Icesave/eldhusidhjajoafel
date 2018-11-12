@@ -13,7 +13,7 @@ function Brick(descr) {
 
 // Add these properties to the prototype, where they will serve as
 // shared defaults, in the absence of an instance-specific overrides.
-Brick.prototype.halfWidth = 50;
+Brick.prototype.halfWidth = 100;
 Brick.prototype.halfHeight = 4;
 
 Brick.prototype.update = function () {
