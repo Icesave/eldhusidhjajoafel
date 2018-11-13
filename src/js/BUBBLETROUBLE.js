@@ -14,7 +14,6 @@
 
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
-
 /*
 0        1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -43,10 +42,10 @@ function createInitialPlayer() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
-    
-    processDiagnostics();
-    
-    entityManager.update(du);
+    if(GAME_MODE === 1) {
+        processDiagnostics();
+        entityManager.update(du);
+    }    
 
     // Prevent perpetual firing!
     //eatKey(Ship.prototype.KEY_FIRE);
@@ -87,9 +86,12 @@ function processDiagnostics() {
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
-
-    entityManager.render(ctx);
-
+    if (GAME_MODE === 0) {
+        menu.renderMenu();
+    }
+    if (GAME_MODE === 1) {
+        entityManager.render(ctx);
+    }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
 
