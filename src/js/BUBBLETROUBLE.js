@@ -105,6 +105,8 @@ function requestPreloads() {
     var requiredImages = {
         // TODO: use another image for player
         player   : "imgs/demonback.png",
+        playerRight : "imgs/demonSide.png",
+        playerLeft : "imgs/demonLeft.png",
         ball     : "imgs/bubbleboi.png"
     };
 
@@ -115,6 +117,8 @@ var g_sprites = {};
 
 function preloadDone() {
 
+    g_sprites.playerLeft  = new Sprite(g_images.playerLeft);
+    g_sprites.playerRight  = new Sprite(g_images.playerRight);
     g_sprites.player  = new Sprite(g_images.player);
     
 
