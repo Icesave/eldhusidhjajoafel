@@ -104,8 +104,8 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "imgs/backthick.png",
-        ball     : "imgs/ball.png"
+        player   : "imgs/demonback.png",
+        ball     : "imgs/bubbleboi.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
