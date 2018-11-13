@@ -83,6 +83,7 @@ Player.prototype.maybeFireBullet = function () {
         if (!this.isShooting) {
             this.isShooting = true;
             entityManager.fireBullet(this.cx, this.cy-this.getRadius());
+            this.sprite = g_sprites.player;
         } 
         
     }
@@ -108,6 +109,7 @@ Player.prototype.updatePlayer = function (du) {
         } else {
             this.cx -= 5;
         }
+        this.sprite = g_sprites.playerLeft;
     }
     if (keys[this.KEY_RIGHT]) {
         if (this.cx == g_canvas.width-30) {
@@ -115,6 +117,7 @@ Player.prototype.updatePlayer = function (du) {
         } else {
             this.cx += 5;
         }
+        this.sprite = g_sprites.playerRight;
     }
 };
 
