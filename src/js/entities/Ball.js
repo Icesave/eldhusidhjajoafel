@@ -25,7 +25,8 @@ function Ball(descr) {
     // Default sprite and scale, if not otherwise specified
     this.sprite = this.sprite || g_sprites.ball;
     this.scale  = this.scale  || 0.5;
-
+    
+    this.rotation = Math.random()*6;
 };
 Ball.prototype = new Entity();
 
@@ -36,6 +37,8 @@ Ball.prototype.update = function (du) {
     var prevY = this.cy;
 
     this.yVel += NOMINAL_GRAVITY;
+    
+    this.rotation += 0.005;
   
     // Compute my provisional new position (barring collisions)
     this.nextX = prevX + this.xVel * du;
