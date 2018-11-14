@@ -20,19 +20,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-// ====================
-// CREATE INITIAL Player
-// ====================
-
-function createInitialPlayer() {
-
-   entityManager.generatePlayer({
-       cx : 200,
-       cy : 520
-   });
-   
-}
-
 
 // =================
 // UPDATE SIMULATION
@@ -133,7 +120,6 @@ function preloadDone() {
 
 
     entityManager.init();
-    createInitialPlayer();
 
     main.init();
 }

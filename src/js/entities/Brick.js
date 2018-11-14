@@ -10,6 +10,16 @@ function Brick(descr) {
     this._spatialType = spatialManager.SQUARE;
     this.spatialHalfWidth = this.halfWidth;
     this.spatialHalfHeight = this.halfHeight;
+
+    if(this.breakable) {
+        this.strokeStyle = "#790000";
+        this.fillStyle = "blue";
+    } 
+    else {
+        this.strokeStyle = "#790000";
+        this.fillStyle = "#D20000";
+
+    }
 }
 
 Brick.prototype = new Entity();

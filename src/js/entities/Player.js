@@ -68,7 +68,7 @@ Player.prototype.update = function (du) {
 };
 
 Player.prototype.takeHit = function () {
-    this.reset();
+    entityManager.reset();
 };
 
 Player.prototype.takePowerUp = function () {

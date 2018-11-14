@@ -15,32 +15,29 @@ var Levels = [
         title: "Level 1",
         backgroundColor: "#00ccff", // blue (bara dæmi, þarf ekki að vera)
         balls: [[600,200,2,-10]],  
-        bricksOn: false
+        bricks: []
     }, 
     {
         title: "Level 2", 
         backgroundColor: "#99ff66", // green
         balls: [[200,200,2,-10],[600,200,2,-10]],
-        bricksOn: false
+        bricks: []
     },
     {
         title: "Level 3",
         backgroundColor: "#ff6666", // pink
-        balls: [[250,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],       
-        bricksOn: true,
-        bricks: [[900, 200],[800,100]]                                       
+        balls: [[250,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],
+        bricks: [[900, 200, 100, 4, true],[800,100, 4, 100, false]]                                       
     },
     {
         title: "Level 4",
         backgroundColor: "", //??  
-        balls: [[200,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],       
-        bricksOn: true,
-        bricks: [[100, 200],[250,100],[400,200],[550,200],[700,200],[850,200]]
+        balls: [[200,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],  
+        bricks: [[100, 200, 100, 4],[250,100, 100, 4],[400,200, 100, 4],[550,200, 100, 4],[700,200, 100, 4],[850,200, 100, 4]]
     }
 ];
 
-var index = 0;  // This should be used to change levels 
-var levelIndex = Levels[index]; 
+var INDEX = 0;  // This should be used to change levels 
 
 /*
 Creates levels with the information from the levels array
