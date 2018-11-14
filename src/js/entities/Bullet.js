@@ -43,13 +43,17 @@ Bullet.prototype.update = function (du) {
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
     this.lifeSpan -= du;
-    if (this.lifeSpan < 0) return entityManager.KILL_ME_NOW;
+    if (this.lifeSpan < 0) {
+        entityManager.bulletDies();
+        return entityManager.KILL_ME_NOW; 
+    }
 
     if(this.cy >= 25 ){
         this.cy -= 10 * du;
     }
 
     if (this.cy < 25 ) {
+        entityManager.bulletDies();
         return entityManager.KILL_ME_NOW;
     }
     

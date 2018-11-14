@@ -94,7 +94,6 @@ generatePlayer : function(descr) {
     this._player.push(new Player(descr));
 },
 
-
 resetPlayer: function() {
     this._forEachOf(this._player, Player.prototype.reset);
 },

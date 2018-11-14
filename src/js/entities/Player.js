@@ -73,16 +73,19 @@ Player.prototype.computeSubStep = function (du) {
 
 };
 
+Player.prototype.isShooting = false;
 
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
     
         // TODO: player shoots bullet
+        if (!this.isShooting) {
+            this.isShooting = true;
+            entityManager.fireBullet(this.cx, this.cy-this.getRadius());
+            this.sprite = g_sprites.player;
+        } 
         
-        entityManager.fireBullet(
-           this.cx, this.cy-this.getRadius());
-           
     }
 };
 
@@ -105,6 +108,7 @@ Player.prototype.updatePlayer = function (du) {
         } else {
             this.cx -= 5;
         }
+        this.sprite = g_sprites.playerLeft;
     }
     if (keys[this.KEY_RIGHT]) {
         this.sprite = g_sprites.playerright;
@@ -114,6 +118,7 @@ Player.prototype.updatePlayer = function (du) {
         } else {
             this.cx += 5;
         }
+        this.sprite = g_sprites.playerRight;
     }
     if(haltflag) {
       this.sprite = g_sprites.playerback;

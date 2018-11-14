@@ -16,6 +16,8 @@ var TOGGLE_TIMER_SHOW = 'T'.charCodeAt(0);
 
 // Quit the game
 var KEY_QUIT = 'Q'.charCodeAt(0);
+var START_GAME = 'Y'.charCodeAt(0);
+
 
 var main = {
 
@@ -51,6 +53,10 @@ var main = {
     //gatherInputs();
     update(dt);
     render(g_ctx);
+
+    if (eatKey(START_GAME)) {
+      GAME_MODE = 1;
+    }
   },
 
   /* 
@@ -110,7 +116,6 @@ var main = {
     * Bootstrap the main-loop
   */
   init: function() {
-
     // Un-comment when the game is deployed
     //window.focus(true);
 
@@ -126,9 +131,8 @@ var main = {
     * @param  frameTime   The time of the frame
   */
   iter: function(frameTime) {
-  
     this._updateClocks(frameTime);
-  
+
     this._iterCore(this._frameTimeDelta_ms);
   
     // Diagnostics, such as showing current timer values etc.
@@ -167,7 +171,7 @@ window.requestAnimationFrame =
   * @param  frameTime   The time of the frame
 */
 function mainIterFrame(frameTime) {
-  main.iter(frameTime);
+    main.iter(frameTime);
 }
 
 /* 

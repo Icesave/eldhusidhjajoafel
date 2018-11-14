@@ -14,7 +14,6 @@
 
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
-
 /*
 0        1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -43,10 +42,10 @@ function createInitialPlayer() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
-    
-    processDiagnostics();
-    
-    entityManager.update(du);
+    if(GAME_MODE === 1) {
+        processDiagnostics();
+        entityManager.update(du);
+    }    
 
     // Prevent perpetual firing!
     //eatKey(Ship.prototype.KEY_FIRE);
@@ -85,9 +84,12 @@ function processDiagnostics() {
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
-
-    entityManager.render(ctx);
-
+    if (GAME_MODE === 0) {
+        menu.renderMenu();
+    }
+    if (GAME_MODE === 1) {
+        entityManager.render(ctx);
+    }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
 
@@ -102,10 +104,10 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        playerback  : "imgs/backthick.png",
-        playerright : "imgs/sidethick.png",
-        playerleft  : "imgs/sidethick.png",
-        ball        : "imgs/ball.png"
+        player   : "imgs/demonback.png",
+        playerRight : "imgs/demonSide.png",
+        playerLeft : "imgs/demonLeft.png",
+        ball     : "imgs/bubbleboi.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -115,10 +117,9 @@ var g_sprites = {};
 
 function preloadDone() {
 
-    g_sprites.playerback = new Sprite(g_images.playerback);
-    g_sprites.playerright = new Sprite(g_images.playerright);
-    g_sprites.playerleft = new Sprite(g_images.playerleft);
-    
+    g_sprites.playerLeft  = new Sprite(g_images.playerLeft);
+    g_sprites.playerRight  = new Sprite(g_images.playerRight);
+    g_sprites.player  = new Sprite(g_images.player);
     
 
     g_sprites.bullet = new Sprite(g_images.ball);
