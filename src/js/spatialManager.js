@@ -91,14 +91,6 @@ var spatialManager = {
         w1 = s1.getSpatialHalfWidth()*2,
         w2 = s2.getSpatialHalfWidth()*2;
 
-        if(x1 - w1 >= x2 &&
-            x1 <= x2 - w2 &&
-            y1 - h1 >= y2 &&
-            y1 <= y2 - h2) {
-                console.log("dddd")
-                return true;
-         }
-
     return (x1 < x2 + w2) && (x1 + w1 > x2) && (y1 < y2 + h2) && (h1 + y1 > y2);
   },
 

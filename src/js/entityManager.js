@@ -62,15 +62,41 @@ deferredSetup : function () {
 },
 
 init: function() {
-    this.generateBall({
-        cx: 350, cy: 500, 
-        xVel: 2, yVel: -10});
-    this.generateBrick({
-      cx : 200, cy : 200,
-      halfWidth : 100, halfHeight : 4,
-      strokeStyle : "#790000",
-      fillStyle : "#D20000"
+    this._level = Levels[INDEX];
+
+    this.generatePlayer({cx:200, cy:520});  // (500,520)
+
+    this.set();
+},
+
+set: function() {
+    this._level.balls.forEach(function(e) {
+        entityManager.generateBall({
+            cx : e[0],
+            cy : e[1],
+            xVel : e[2],
+            yVel : e[3],
+        });      
     });
+
+    this._level.bricks.forEach(function(e) {
+        entityManager.generateBrick({
+            cx : e[0],
+            cy : e[1],
+            halfWidth : e[2], halfHeight : e[3],
+            breakable : e[4]
+        });      
+    });
+},
+
+reset: function() { 
+    this._player[0].reset();
+    this._bullets.length = 0;
+    this._balls.length = 0;
+    this._powerups.length = 0;
+    this._bricks.length = 0;
+    this._maxBullets = 1;
+    this.set();
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -112,6 +138,11 @@ resetPlayer: function() {
 
 
 update: function(du) {
+    if(this._balls.length < 1) {
+        INDEX += 1;
+        this._level = Levels[INDEX];
+        this.reset();
+    }
 
     for (var c = 0; c < this._categories.length; ++c) {
 
