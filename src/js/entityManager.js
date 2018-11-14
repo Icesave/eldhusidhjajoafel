@@ -30,6 +30,7 @@ var entityManager = {
 _player   : [],
 _bullets : [],
 _balls : [],
+_powerups : [],
 _bricks : [],
 _maxBullets : 1,
 
@@ -57,7 +58,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._player, this._bullets, this._balls, this._bricks];
+    this._categories = [this._player, this._bullets, this._balls, this._bricks, this._powerups];
 },
 
 init: function() {
@@ -76,6 +77,14 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
           cy   : cy
       }));
     }
+},
+
+generatePowerUp : function(cx, cy) {
+    this._powerups.push(new PowerUp({
+        cx : cx,
+        cy : cy
+    }));
+    console.log(this._powerups);
 },
 
 setMaxBullets: function(num){

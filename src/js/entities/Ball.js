@@ -90,6 +90,12 @@ Ball.prototype.getRadius = function () {
 
 Ball.prototype.takeBulletHit = function () {
     this.kill();
+    // Powerup drops down
+    // 25% chance
+    var i = Math.floor(Math.random() * 3) + 1;
+    if(i===2){
+        entityManager.generatePowerUp(this.cx, this.cy);
+    }
     
     if (this.scale > 0.125) {
         this._spawnFragment(1, this.origYVel+1);

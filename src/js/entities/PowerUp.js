@@ -11,6 +11,8 @@ function PowerUp(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+
+  
 }
 
 PowerUp.prototype = new Entity();
@@ -24,13 +26,9 @@ PowerUp.prototype.update = function (du) {
 
     // falls to the floor
     if(this.cy <= g_canvas.height ){
-        this.cy += 10 * du;
+        this.cy += 4 * du;
     }
 
-    if (this.cy > g_canvas.height ) {
-        return entityManager.KILL_ME_NOW;
-    }
-     
     // (Re-)Register
 
     spatialManager.register(this);
@@ -42,6 +40,10 @@ PowerUp.prototype.getRadius = function () {
 
 PowerUp.prototype.render = function (ctx) {
 
-    g_sprites.powerUp.drawWrappedCentredAt(ctx, this.cx, this.cy);
+    // draw the powerup
+  
+    g_sprites.powerup.drawCentredAt(
+        ctx, this.cx, this.cy, this.rotation
+    );
 
 };
