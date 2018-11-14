@@ -61,8 +61,6 @@ var KEY_SPATIAL = keyCode('X');
 var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
 
-var KEY_K = keyCode('K');
-
 function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
@@ -104,8 +102,10 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "imgs/backthick.png",
-        ball     : "imgs/ball.png"
+        playerback  : "imgs/backthick.png",
+        playerright : "imgs/sidethick.png",
+        playerleft  : "imgs/sidethick.png",
+        ball        : "imgs/ball.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -115,13 +115,19 @@ var g_sprites = {};
 
 function preloadDone() {
 
-    g_sprites.player  = new Sprite(g_images.player);
+    g_sprites.playerback = new Sprite(g_images.playerback);
+    g_sprites.playerright = new Sprite(g_images.playerright);
+    g_sprites.playerleft = new Sprite(g_images.playerleft);
+    
     
 
     g_sprites.bullet = new Sprite(g_images.ball);
 
     g_sprites.ball = new Sprite(g_images.ball);
 
+    
+    g_sprites.playerleft.scaley = 1;
+    g_sprites.playerleft.scale = -1;
     g_sprites.bullet.scale = 0.1;
 
     entityManager.init();

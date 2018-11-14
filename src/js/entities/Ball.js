@@ -27,11 +27,14 @@ function Ball(descr) {
     this.scale  = this.scale  || 0.5;
 
 };
+
 Ball.prototype = new Entity();
 
 var NOMINAL_GRAVITY = 0.12;
 Ball.prototype.update = function (du) {
-    // Remember my previous position
+  
+    spatialManager.unregister(this);
+    
     var prevX = this.cx;
     var prevY = this.cy;
 
@@ -44,8 +47,6 @@ Ball.prototype.update = function (du) {
     if (this._isDeadNow) {
         return entityManager.KILL_ME_NOW;
     }
-
-
 
     var r = this.getRadius();
     // Bounce off top, bottom and side edges
@@ -62,6 +63,22 @@ Ball.prototype.update = function (du) {
     this.cx += this.xVel * du;
     this.cy += this.yVel * du;
 
+
+
+    var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
+    ball = this; // JavaScript is unable to recognize 'this' in the function below
+
+    entities.forEach(function(entity) {
+      /* What to do if the bullet is colliding with a rock or another bullet */
+      if(entity instanceof Bullet) {
+          ball.takeBulletHit();
+          entity.kill();
+          return entityManager.KILL_ME_NOW;
+      }
+    });
+
+
+    spatialManager.register(this);
 };
 
 Ball.prototype.getRadius = function () {

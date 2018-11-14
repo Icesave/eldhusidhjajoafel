@@ -31,6 +31,7 @@ _player   : [],
 _bullets : [],
 _balls : [],
 _bricks : [],
+_maxBullets : 1,
 
 // "PRIVATE" METHODS
 
@@ -69,10 +70,16 @@ init: function() {
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
-    this._bullets.push(new Bullet({
-        cx   : cx,
-        cy   : cy
-    }));
+    if(this._bullets.length < this._maxBullets) {
+      this._bullets.push(new Bullet({
+          cx   : cx,
+          cy   : cy
+      }));
+    }
+},
+
+setMaxBullets: function(num){
+    this._maxBullets = num;
 },
 
 generateBall : function(descr) {

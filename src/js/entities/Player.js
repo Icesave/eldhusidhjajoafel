@@ -87,20 +87,19 @@ Player.prototype.maybeFireBullet = function () {
 };
 
 Player.prototype.getRadius = function () {
-    return (this.sprite.width / 2) * 0.9;
+    return (this.sprite.width / 4) * 0.9;
 };
 
 Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy);
-    this.rotation = this.reset_rotation;
-    
-    this.halt();
 };
 
 
 Player.prototype.updatePlayer = function (du) {
+    var haltflag = true;
     if (keys[this.KEY_LEFT]) {
-        
+        this.sprite = g_sprites.playerleft;
+        haltflag = false;
         if (this.cx == 30) {
             this.cx = this.cx;
         } else {
@@ -108,11 +107,16 @@ Player.prototype.updatePlayer = function (du) {
         }
     }
     if (keys[this.KEY_RIGHT]) {
+        this.sprite = g_sprites.playerright;
+        haltflag = false;
         if (this.cx == g_canvas.width-30) {
             this.cx = this.cx;
         } else {
             this.cx += 5;
         }
+    }
+    if(haltflag) {
+      this.sprite = g_sprites.playerback;
     }
 };
 
