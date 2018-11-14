@@ -82,19 +82,24 @@ var spatialManager = {
     return util.square(distX - shw) + util.square(distY - shh) <= util.square(cr);
   },
   _collideSquares: function(s1, s2) {
-    var x1 = c1.getPos().posX,
-        x2 = c2.getPos().posX,
-        y1 = c1.getPos().posY,
-        y2 = c2.getPos().posY,
-        h1 = s1.getSpatialHalfHeight()*2,
-        h2 = s2.getSpatialHalfHeight()*2,
+    var x1 = s1.getPos().posX,
+        x2 = s2.getPos().posX,
+        y1 = s1.getPos().posY,
+        y2 = s2.getPos().posY,
+        h1 = s1.getSpatialHalfHeight(),
+        h2 = s2.getSpatialHalfHeight(),
         w1 = s1.getSpatialHalfWidth()*2,
         w2 = s2.getSpatialHalfWidth()*2;
 
-    return  x1 < x2 + w2 &&
-            x1 + w1 > x2 &&
-            y1 < y2 + h2 &&
-            h1 + y1 > y2
+        if(x1 - w1 >= x2 &&
+            x1 <= x2 - w2 &&
+            y1 - h1 >= y2 &&
+            y1 <= y2 - h2) {
+                console.log("dddd")
+                return true;
+         }
+
+    return (x1 < x2 + w2) && (x1 + w1 > x2) && (y1 < y2 + h2) && (h1 + y1 > y2);
   },
 
   // ==============

@@ -83,11 +83,11 @@ Player.prototype.maybeFireBullet = function () {
 };
 
 Player.prototype.getSpatialHalfWidth  = function () {
-    return 10;
+    return 30;
 };
 
 Player.prototype.getSpatialHalfHeight  = function () {
-    return 20;
+    return 40;
 };
 
 Player.prototype.reset = function () {
