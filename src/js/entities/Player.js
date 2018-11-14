@@ -71,9 +71,9 @@ Player.prototype.takeHit = function () {
     this.reset();
 };
 
-Player.prototype.computeSubStep = function (du) {
-
-};
+Player.prototype.takePowerUp = function () {
+    this.powerUp = power;
+}
 
 Player.prototype.maybeFireBullet = function () {
 

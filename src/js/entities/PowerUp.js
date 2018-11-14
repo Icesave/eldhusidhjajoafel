@@ -12,7 +12,7 @@ function PowerUp(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-  
+
 }
 
 PowerUp.prototype = new Entity();
