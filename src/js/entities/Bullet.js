@@ -22,7 +22,6 @@ function Bullet(descr) {
 
 Bullet.prototype = new Entity();
 
-
 Bullet.prototype.getSpatialHalfWidth  = function () {
     return this.spatialHalfWidth;
 };
@@ -38,11 +37,7 @@ Bullet.prototype.zappedSound = new Audio(
     "sounds/bulletZapped.ogg");
     
 // Initial, inheritable, default values
-Bullet.prototype.rotation = 0;
-Bullet.prototype.cx = 200;
-Bullet.prototype.cy = 200;
-Bullet.prototype.velX = 1;
-Bullet.prototype.velY = 1;
+Bullet.prototype.rotation = 2.2*Math.PI;
 
 // Convert times from milliseconds to "nominal" time units.
 Bullet.prototype.lifeSpan = 3000 / NOMINAL_UPDATE_INTERVAL;
@@ -63,22 +58,23 @@ Bullet.prototype.update = function (du) {
         this.cy -= 10 * du;
     }
 
-    if (this.cy < 25 ) {
+    if (this.cy < this.halfHeight) {
         return entityManager.KILL_ME_NOW;
     }
     
-
-    this.rotation += 1 * du;
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);   
 
+    var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
+    bullet = this; // JavaScript is unable to recognize 'this' in the function below
 
+    entities.forEach(function(entity) {
+        if(entity instanceof Brick) { 
+            bullet.takeHit();
+        }
+    });
 
     spatialManager.register(this);
-};
-
-Bullet.prototype.getRadius = function () {
-    return 4;
 };
 
 Bullet.prototype.takeHit = function () {
@@ -89,6 +85,6 @@ Bullet.prototype.takeHit = function () {
 
 Bullet.prototype.render = function (ctx) {
     g_sprites.bullet.drawCentredAt(
-        ctx, this.cx, this.cy, this.rotation
+        ctx, this.cx, this.cy - this.spatialHalfHeight, this.rotation
     );
 };

@@ -76,7 +76,7 @@ init: function() {
 fireBullet: function(cx, cy, velX, velY, rotation) {
     if(this._bullets.length < this._maxBullets) {
       this._bullets.push(new Bullet({
-          cx : cx, cy : cy,
+          cx : cx, cy : cy + 600,
           halfWidth : 4, halfHeight : 600,
       }));
     }
