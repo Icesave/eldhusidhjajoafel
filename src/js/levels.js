@@ -98,3 +98,4 @@ function createLevel(levelIndex) {
                 fillStyle : "#D20000"
         }); 
 }
+}

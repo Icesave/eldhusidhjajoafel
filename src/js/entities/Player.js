@@ -60,10 +60,19 @@ Player.prototype.update = function (du) {
     this.maybeFireBullet();
 
     
-    // TODO: YOUR STUFF HERE! ---die if isColliding, otherwise Register
-    //
-    // Handle collisions
-    //
+
+
+    var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
+    player = this; // JavaScript is unable to recognize 'this' in the function below
+
+    entities.forEach(function(entity) {
+      /* What to do if the bullet is colliding with a rock or another bullet */
+      if(entity instanceof Ball) {
+            player.reset();
+          return entityManager.KILL_ME_NOW;
+      }
+    });
+
     
     spatialManager.register(this);
     
@@ -73,19 +82,10 @@ Player.prototype.computeSubStep = function (du) {
 
 };
 
-Player.prototype.isShooting = false;
-
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
-    
-        // TODO: player shoots bullet
-        if (!this.isShooting) {
-            this.isShooting = true;
-            entityManager.fireBullet(this.cx, this.cy-this.getRadius());
-            this.sprite = g_sprites.player;
-        } 
-        
+        entityManager.fireBullet(this.cx, this.cy-this.getRadius());
     }
 };
 
@@ -101,7 +101,6 @@ Player.prototype.reset = function () {
 Player.prototype.updatePlayer = function (du) {
     var haltflag = true;
     if (keys[this.KEY_LEFT]) {
-        this.sprite = g_sprites.playerleft;
         haltflag = false;
         if (this.cx == 30) {
             this.cx = this.cx;
@@ -111,7 +110,6 @@ Player.prototype.updatePlayer = function (du) {
         this.sprite = g_sprites.playerLeft;
     }
     if (keys[this.KEY_RIGHT]) {
-        this.sprite = g_sprites.playerright;
         haltflag = false;
         if (this.cx == g_canvas.width-30) {
             this.cx = this.cx;
@@ -121,7 +119,7 @@ Player.prototype.updatePlayer = function (du) {
         this.sprite = g_sprites.playerRight;
     }
     if(haltflag) {
-      this.sprite = g_sprites.playerback;
+      this.sprite = g_sprites.player;
     }
 };
 

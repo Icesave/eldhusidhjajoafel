@@ -126,9 +126,6 @@ function preloadDone() {
 
     g_sprites.ball = new Sprite(g_images.ball);
 
-    
-    g_sprites.playerleft.scaley = 1;
-    g_sprites.playerleft.scale = -1;
     g_sprites.bullet.scale = 0.1;
 
     entityManager.init();

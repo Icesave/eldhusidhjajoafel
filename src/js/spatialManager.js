@@ -100,6 +100,24 @@ var spatialManager = {
   },
 
   /* 
+    * findEntityInRange(e1)
+    * Find every entity that is colliding with single entity
+    * 
+    * @param  e1  The entity that is getting a collision test
+    * @return     Array of entities that is colling with e1
+  */
+  findEntityInRange: function(e1) {
+    var res = [];
+    // Iterate through all the registered entities
+    this._entities.forEach(function(e2) {
+      if(spatialManager._collide(e1, e2)) {
+        res.push(e2); // Collision found!
+      }
+    });
+    return res;
+  },
+
+  /* 
     * render(ctx)
     * Render a red circle to indicate the collision area of all the objects
     * 

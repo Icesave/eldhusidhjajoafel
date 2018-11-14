@@ -44,7 +44,6 @@ Bullet.prototype.update = function (du) {
 
     this.lifeSpan -= du;
     if (this.lifeSpan < 0) {
-        entityManager.bulletDies();
         return entityManager.KILL_ME_NOW; 
     }
 
@@ -53,7 +52,6 @@ Bullet.prototype.update = function (du) {
     }
 
     if (this.cy < 25 ) {
-        entityManager.bulletDies();
         return entityManager.KILL_ME_NOW;
     }
     
@@ -62,7 +60,7 @@ Bullet.prototype.update = function (du) {
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);   
 
-    // (Re-)Register
+
 
     spatialManager.register(this);
 };
@@ -79,16 +77,7 @@ Bullet.prototype.takeBulletHit = function () {
 };
 
 Bullet.prototype.render = function (ctx) {
-
-    var fadeThresh = Bullet.prototype.lifeSpan / 3;
-
-    if (this.lifeSpan < fadeThresh) {
-        ctx.globalAlpha = this.lifeSpan / fadeThresh;
-    }
-
-    g_sprites.bullet.drawWrappedCentredAt(
+    g_sprites.bullet.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
-
-    ctx.globalAlpha = 1;
 };
