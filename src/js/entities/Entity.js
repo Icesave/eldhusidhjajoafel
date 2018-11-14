@@ -89,7 +89,6 @@ Entity.prototype.setPos = function (cx, cy) {
   this.cy = cy;
 };
 
-
 // =======
 // GETTERS
 // =======
@@ -123,3 +122,13 @@ Entity.prototype.getRadius = function () {
 Entity.prototype.getSpatialID = function () {
   return this._spatialID;
 };
+
+/* 
+  * getSpatialType()
+  * Get the spatial type of the entity and returns it
+  * 
+  * @return   The spatial type of the entity
+*/
+Entity.prototype.getSpatialType = function () {
+    return this._spatialType;
+  };

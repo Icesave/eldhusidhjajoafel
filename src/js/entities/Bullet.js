@@ -15,9 +15,21 @@ function Bullet(descr) {
     // Make a noise when I am created (i.e. fired)
     this.fireSound.play();
 
+    this._spatialType = spatialManager.SQUARE;
+    this.spatialHalfWidth = this.halfWidth;
+    this.spatialHalfHeight = this.halfHeight;
 }
 
 Bullet.prototype = new Entity();
+
+
+Bullet.prototype.getSpatialHalfWidth  = function () {
+    return this.spatialHalfWidth;
+};
+
+Bullet.prototype.getSpatialHalfHeight  = function () {
+    return this.spatialHalfHeight;
+};
 
 // HACKED-IN AUDIO (no preloading)
 Bullet.prototype.fireSound = new Audio(   // Nota þessi hljóð þar til annað er ákveðið
@@ -69,9 +81,8 @@ Bullet.prototype.getRadius = function () {
     return 4;
 };
 
-Bullet.prototype.takeBulletHit = function () {
+Bullet.prototype.takeHit = function () {
   this.kill();
-  
   // Make a noise when I am zapped by another bullet
   this.zappedSound.play();
 };

@@ -26,6 +26,8 @@ function Player(descr) {
     // Set normal drawing scale, and warp state off
     this.scale = 1;
     this.rotation = 0;
+
+    this._spatialType = spatialManager.SQUARE;
 };
 
 Player.prototype = new Entity();
@@ -59,23 +61,14 @@ Player.prototype.update = function (du) {
     // Handle firing
     this.maybeFireBullet();
 
-    
-
-
-    var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
-    player = this; // JavaScript is unable to recognize 'this' in the function below
-
-    entities.forEach(function(entity) {
-      /* What to do if the bullet is colliding with a rock or another bullet */
-      if(entity instanceof Ball) {
-            player.reset();
-          return entityManager.KILL_ME_NOW;
-      }
-    });
 
     
     spatialManager.register(this);
     
+};
+
+Player.prototype.takeHit = function () {
+    this.reset();
 };
 
 Player.prototype.computeSubStep = function (du) {
@@ -89,8 +82,12 @@ Player.prototype.maybeFireBullet = function () {
     }
 };
 
-Player.prototype.getRadius = function () {
-    return (this.sprite.width / 4) * 0.9;
+Player.prototype.getSpatialHalfWidth  = function () {
+    return 10;
+};
+
+Player.prototype.getSpatialHalfHeight  = function () {
+    return 20;
 };
 
 Player.prototype.reset = function () {

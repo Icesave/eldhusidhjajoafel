@@ -90,6 +90,12 @@ strokeCircle: function (ctx, x, y, r) {
     ctx.stroke();
 },
 
+strokeBox: function (ctx, x, y, w, h) {
+    ctx.beginPath();
+    ctx.strokeRect(x, y, w, h);
+    ctx.stroke();
+},
+
 fillCircle: function (ctx, x, y, r) {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);

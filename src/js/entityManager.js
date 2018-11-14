@@ -61,9 +61,12 @@ deferredSetup : function () {
 },
 
 init: function() {
-    this._generateBall();
+    this.generateBall({
+        cx: 350, cy: 500, 
+        xVel: 2, yVel: -10});
     this.generateBrick({
       cx : 200, cy : 200,
+      halfWidth : 100, halfHeight : 4,
       strokeStyle : "#790000",
       fillStyle : "#D20000"
     });
@@ -72,8 +75,8 @@ init: function() {
 fireBullet: function(cx, cy, velX, velY, rotation) {
     if(this._bullets.length < this._maxBullets) {
       this._bullets.push(new Bullet({
-          cx   : cx,
-          cy   : cy
+          cx : cx, cy : cy,
+          halfWidth : 4, halfHeight : 600,
       }));
     }
 },
@@ -107,9 +110,9 @@ update: function(du) {
         var i = 0;
 
         while (i < aCategory.length) {
-
+            
             var status = aCategory[i].update(du);
-
+            
             if (status === this.KILL_ME_NOW) {
                 // remove the dead guy, and shuffle the others down to
                 // prevent a confusing gap from appearing in the array
