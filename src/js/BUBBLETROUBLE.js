@@ -60,8 +60,6 @@ var KEY_SPATIAL = keyCode('X');
 var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
 
-var KEY_K = keyCode('K');
-
 function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;

@@ -21,13 +21,14 @@ var g_debugMode = false; // Enables debug mode
 var g_frameCounter = 1;
 
 var INFO = 'I'.charCodeAt(0); 
+var KILL = 'K'.charCodeAt(0); 
 
-var TOGGLE_DEBUGMODE = 'L'.charCodeAt(0);
+var TOGGLE_DEBUGMODE = 'M'.charCodeAt(0);
 var TOGGLE_CLEAR = 'C'.charCodeAt(0);
 var TOGGLE_BOX = 'B'.charCodeAt(0);
 var TOGGLE_UNDO_BOX = 'U'.charCodeAt(0);
 var TOGGLE_FLIPFLOP = 'F'.charCodeAt(0);
-var TOGGLE_RENDER = 'R'.charCodeAt(0);
+var TOGGLE_RENDER = 'Y'.charCodeAt(0);
 
 /* 
   * render(ctx)
@@ -43,14 +44,24 @@ function render(ctx) {
     if(g_debugMode) {
       console.log("===========================");
       console.log("DEBUG MODE - " + g_debugMode);
-      console.log("K = Destroy a ball closest to the mouse");
-      console.log("C = Toggle clear canvas before each render");
-      console.log("B = Toggle undo box");
-      console.log("U = Toggle undo box");
-      console.log("F =");
-      console.log("R = Toggle");
+      console.log("T = Toggle timer");
+      console.log("Q = Quit the game");
+      
       console.log("I = See info about all the current entities");
+      console.log("K = Destroy a ball");
+      console.log("C = Toggle clear canvas before each render");
+      console.log("B = Toggle back box - Double buffer box");
+      console.log("U = Toggle undo box - Double buffer box");
+      console.log("F = Flipity flop boxes");
+      console.log("Y = Toggle rendering");
+
+      console.log("P = Pause the game");
+      console.log("O = Step one step");
+
       console.log("X = Toggle collision circle");
+      console.log("H = Halt the game");
+      console.log("R = Restart the game");
+      
       console.log("---------------------------");
     }
   }
@@ -76,6 +87,11 @@ function render(ctx) {
       entityManager.allEntities().forEach(function(entity) {
         console.dir(entity);
       });
+      console.log("---------------------------");
+    }
+    if(eatKey(KILL)) {
+      console.log("DEBUG: Kill ball");
+      entityManager._balls[0].takeHit()
       console.log("---------------------------");
     }
   }

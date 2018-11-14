@@ -26,6 +26,8 @@ function Player(descr) {
     // Set normal drawing scale, and warp state off
     this.scale = 1;
     this.rotation = 0;
+
+    this._spatialType = spatialManager.SQUARE;
 };
 
 Player.prototype = new Entity();
@@ -59,51 +61,44 @@ Player.prototype.update = function (du) {
     // Handle firing
     this.maybeFireBullet();
 
-    
-    // TODO: YOUR STUFF HERE! ---die if isColliding, otherwise Register
-    //
-    // Handle collisions
-    //
+
     
     spatialManager.register(this);
     
+};
+
+Player.prototype.takeHit = function () {
+    this.reset();
 };
 
 Player.prototype.computeSubStep = function (du) {
 
 };
 
-Player.prototype.isShooting = false;
-
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
-    
-        // TODO: player shoots bullet
-        if (!this.isShooting) {
-            this.isShooting = true;
-            entityManager.fireBullet(this.cx, this.cy-this.getRadius());
-            this.sprite = g_sprites.player;
-        } 
-        
+        entityManager.fireBullet(this.cx, this.cy-this.getRadius());
     }
 };
 
-Player.prototype.getRadius = function () {
-    return (this.sprite.width / 2) * 0.9;
+Player.prototype.getSpatialHalfWidth  = function () {
+    return 10;
+};
+
+Player.prototype.getSpatialHalfHeight  = function () {
+    return 20;
 };
 
 Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy);
-    this.rotation = this.reset_rotation;
-    
-    this.halt();
 };
 
 
 Player.prototype.updatePlayer = function (du) {
+    var haltflag = true;
     if (keys[this.KEY_LEFT]) {
-        
+        haltflag = false;
         if (this.cx == 30) {
             this.cx = this.cx;
         } else {
@@ -112,12 +107,16 @@ Player.prototype.updatePlayer = function (du) {
         this.sprite = g_sprites.playerLeft;
     }
     if (keys[this.KEY_RIGHT]) {
+        haltflag = false;
         if (this.cx == g_canvas.width-30) {
             this.cx = this.cx;
         } else {
             this.cx += 5;
         }
         this.sprite = g_sprites.playerRight;
+    }
+    if(haltflag) {
+      this.sprite = g_sprites.player;
     }
 };
 

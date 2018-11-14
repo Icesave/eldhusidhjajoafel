@@ -15,9 +15,21 @@ function Bullet(descr) {
     // Make a noise when I am created (i.e. fired)
     this.fireSound.play();
 
+    this._spatialType = spatialManager.SQUARE;
+    this.spatialHalfWidth = this.halfWidth;
+    this.spatialHalfHeight = this.halfHeight;
 }
 
 Bullet.prototype = new Entity();
+
+
+Bullet.prototype.getSpatialHalfWidth  = function () {
+    return this.spatialHalfWidth;
+};
+
+Bullet.prototype.getSpatialHalfHeight  = function () {
+    return this.spatialHalfHeight;
+};
 
 // HACKED-IN AUDIO (no preloading)
 Bullet.prototype.fireSound = new Audio(   // Nota þessi hljóð þar til annað er ákveðið
@@ -44,7 +56,6 @@ Bullet.prototype.update = function (du) {
 
     this.lifeSpan -= du;
     if (this.lifeSpan < 0) {
-        entityManager.bulletDies();
         return entityManager.KILL_ME_NOW; 
     }
 
@@ -53,7 +64,6 @@ Bullet.prototype.update = function (du) {
     }
 
     if (this.cy < 25 ) {
-        entityManager.bulletDies();
         return entityManager.KILL_ME_NOW;
     }
     
@@ -62,7 +72,7 @@ Bullet.prototype.update = function (du) {
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);   
 
-    // (Re-)Register
+
 
     spatialManager.register(this);
 };
@@ -71,17 +81,14 @@ Bullet.prototype.getRadius = function () {
     return 4;
 };
 
+Bullet.prototype.takeHit = function () {
+  this.kill();
+  // Make a noise when I am zapped by another bullet
+  this.zappedSound.play();
+};
+
 Bullet.prototype.render = function (ctx) {
-
-    var fadeThresh = Bullet.prototype.lifeSpan / 3;
-
-    if (this.lifeSpan < fadeThresh) {
-        ctx.globalAlpha = this.lifeSpan / fadeThresh;
-    }
-
-    g_sprites.bullet.drawWrappedCentredAt(
+    g_sprites.bullet.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
-
-    ctx.globalAlpha = 1;
 };

@@ -31,6 +31,7 @@ _player   : [],
 _bullets : [],
 _balls : [],
 _bricks : [],
+_maxBullets : 1,
 
 // "PRIVATE" METHODS
 
@@ -60,26 +61,28 @@ deferredSetup : function () {
 },
 
 init: function() {
-    this._generateBall();
+    this.generateBall({
+        cx: 350, cy: 500, 
+        xVel: 2, yVel: -10});
     this.generateBrick({
       cx : 200, cy : 200,
+      halfWidth : 100, halfHeight : 4,
       strokeStyle : "#790000",
       fillStyle : "#D20000"
     });
 },
 
-fireBullet: function(cx, cy) {
-    this._bullets.push(new Bullet({
-        cx   : cx,
-        cy   : cy
-    }));
-    
+fireBullet: function(cx, cy, velX, velY, rotation) {
+    if(this._bullets.length < this._maxBullets) {
+      this._bullets.push(new Bullet({
+          cx : cx, cy : cy,
+          halfWidth : 4, halfHeight : 600,
+      }));
+    }
 },
 
-bulletDies: function() {
-    
-    this._player[0].isShooting = false;
-       
+setMaxBullets: function(num){
+    this._maxBullets = num;
 },
 
 generateBall : function(descr) {
@@ -107,9 +110,9 @@ update: function(du) {
         var i = 0;
 
         while (i < aCategory.length) {
-
+            
             var status = aCategory[i].update(du);
-
+            
             if (status === this.KILL_ME_NOW) {
                 // remove the dead guy, and shuffle the others down to
                 // prevent a confusing gap from appearing in the array

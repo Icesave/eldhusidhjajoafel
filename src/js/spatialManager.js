@@ -34,16 +34,74 @@ var spatialManager = {
     * @return     Whether or not the 2 entities are colliding
   */
   _collide: function(e1, e2) {
-    var x1 = e1.getPos().posX,
-      x2 = e2.getPos().posX,
-      y1 = e1.getPos().posY,
-      y2 = e2.getPos().posY,
-      r1 = e1.getRadius(),
-      r2 = e2.getRadius();
+    var type1 = e1.getSpatialType(),
+        type2 = e2.getSpatialType();
+
+    if(type1 == spatialManager.CIRCLE && type2 == spatialManager.CIRCLE) {
+        return this._collideCircles(e1, e2);
+    }
+    else if(type1 == spatialManager.CIRCLE && type2 == spatialManager.SQUARE) {
+        return this._collideCircleSquare(e1, e2);
+    }
+    else if(type1 == spatialManager.SQUARE && type2 == spatialManager.CIRCLE) {
+        return this._collideCircleSquare(e2, e1);
+    }
+    else if(type1 == spatialManager.SQUARE && type2 == spatialManager.SQUARE) {
+        return this._collideSquares(e1, e2);
+    }
+  },
+  _collideCircles: function(c1, c2) {
+    var x1 = c1.getPos().posX,
+        x2 = c2.getPos().posX,
+        y1 = c1.getPos().posY,
+        y2 = c2.getPos().posY,
+        r1 = c1.getRadius(),
+        r2 = c2.getRadius();
 
     // Equation to calculate if 2 entities are colliding
     return util.square(x2 - x1) + util.square(y1 - y2) <= util.square(r1 + r2);
   },
+  _collideCircleSquare: function(c1, s1) {
+    var cx = c1.getPos().posX,
+        sx = s1.getPos().posX,
+        cy = c1.getPos().posY,
+        sy = s1.getPos().posY,
+        cr = c1.getRadius(),
+        shw = s1.getSpatialHalfWidth(),
+        shh = s1.getSpatialHalfHeight();
+        
+    var distX = Math.abs(cx - sx);
+    var distY = Math.abs(cy - sy);
+
+    if (distX > (shw + cr)) { return false; }
+    if (distY > (shh + cr)) { return false; }
+
+    if (distX <= (shw)) { return true; } 
+    if (distY <= (shh)) { return true; }
+
+    return util.square(distX - shw) + util.square(distY - shh) <= util.square(cr);
+  },
+  _collideSquares: function(s1, s2) {
+    var x1 = c1.getPos().posX,
+        x2 = c2.getPos().posX,
+        y1 = c1.getPos().posY,
+        y2 = c2.getPos().posY,
+        h1 = s1.getSpatialHalfHeight()*2,
+        h2 = s2.getSpatialHalfHeight()*2,
+        w1 = s1.getSpatialHalfWidth()*2,
+        w2 = s2.getSpatialHalfWidth()*2;
+
+    return  x1 < x2 + w2 &&
+            x1 + w1 > x2 &&
+            y1 < y2 + h2 &&
+            h1 + y1 > y2
+  },
+
+  // ==============
+  // PUBLIC DATA 
+  // ==============
+  CIRCLE : 0,
+  SQUARE : 1,
 
   // ==============
   // PUBLIC METHODS
@@ -100,6 +158,24 @@ var spatialManager = {
   },
 
   /* 
+    * findEntityInRange(e1)
+    * Find every entity that is colliding with single entity
+    * 
+    * @param  e1  The entity that is getting a collision test
+    * @return     Array of entities that is colling with e1
+  */
+  findEntityInRange: function(e1) {
+    var res = [];
+    // Iterate through all the registered entities
+    this._entities.forEach(function(e2) {
+      if(spatialManager._collide(e1, e2)) {
+        res.push(e2); // Collision found!
+      }
+    });
+    return res;
+  },
+
+  /* 
     * render(ctx)
     * Render a red circle to indicate the collision area of all the objects
     * 
@@ -107,11 +183,22 @@ var spatialManager = {
   */
   render: function(ctx) {
     var oldStyle = ctx.strokeStyle;
-    ctx.strokeStyle = "red";
     
     // Iterate through all the registered entities
     this._entities.forEach(function(e) {
-      util.strokeCircle(ctx, e.getPos().posX, e.getPos().posY, e.getRadius());
+        
+        if(e.getSpatialType() == spatialManager.CIRCLE) {
+            ctx.strokeStyle = "red";
+            util.strokeCircle(ctx, e.getPos().posX, e.getPos().posY, e.getRadius());
+        }
+        else if(e.getSpatialType() == spatialManager.SQUARE) {
+            ctx.strokeStyle = "blue";
+            var x = e.getPos().posX,
+                y = e.getPos().posY,
+                hw = e.getSpatialHalfWidth(),
+                hh = e.getSpatialHalfHeight();
+            util.strokeBox(ctx, x - hw, y - hh, hw * 2, hh *2);
+        }
     });
 
     ctx.strokeStyle = oldStyle;

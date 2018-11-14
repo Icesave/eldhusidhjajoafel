@@ -6,18 +6,30 @@
 
 // A generic contructor which accepts an arbitrary descriptor object
 function Brick(descr) {
-    for (var property in descr) {
-        this[property] = descr[property];
-    }
+    this.setup(descr);
+    this._spatialType = spatialManager.SQUARE;
+    this.spatialHalfWidth = this.halfWidth;
+    this.spatialHalfHeight = this.halfHeight;
 }
 
+Brick.prototype = new Entity();
 // Add these properties to the prototype, where they will serve as
 // shared defaults, in the absence of an instance-specific overrides.
-Brick.prototype.halfWidth = 100;
-Brick.prototype.halfHeight = 4;
+
+Brick.prototype.getSpatialHalfWidth  = function () {
+    return this.spatialHalfWidth;
+};
+
+Brick.prototype.getSpatialHalfHeight  = function () {
+    return this.spatialHalfHeight;
+};
 
 Brick.prototype.update = function () {
-    // TODO 
+    spatialManager.unregister(this);
+
+    if (this._isDeadNow) return entityManager.KILL_ME_NOW;
+    
+    spatialManager.register(this);
 };
 
 Brick.prototype.render = function (ctx) {
