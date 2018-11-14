@@ -91,7 +91,7 @@ function render(ctx) {
     }
     if(eatKey(KILL)) {
       console.log("DEBUG: Kill ball");
-      entityManager._balls[0].takeBulletHit()
+      entityManager._balls[0].takeHit()
       console.log("---------------------------");
     }
   }

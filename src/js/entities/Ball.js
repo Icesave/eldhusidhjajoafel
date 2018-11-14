@@ -27,6 +27,8 @@ function Ball(descr) {
     this.scale  = this.scale  || 0.5;
     
     this.rotation = Math.random()*6;
+
+    this._spatialType = spatialManager.CIRCLE;
 };
 
 Ball.prototype = new Entity();
@@ -73,11 +75,17 @@ Ball.prototype.update = function (du) {
 
     entities.forEach(function(entity) {
       /* What to do if the bullet is colliding with a rock or another bullet */
-      if(entity instanceof Bullet) {
-          ball.takeBulletHit();
-          entity.kill();
-          return entityManager.KILL_ME_NOW;
-      }
+        if(entity instanceof Bullet) {
+            entity.takeHit();
+            ball.takeHit();
+            return entityManager.KILL_ME_NOW;
+        }
+        if(entity instanceof Player) { 
+            entity.takeHit();
+        }
+        if(entity instanceof Brick) { 
+            ball.yVel = ball.origYVel/2;
+        }
     });
 
 
@@ -85,10 +93,10 @@ Ball.prototype.update = function (du) {
 };
 
 Ball.prototype.getRadius = function () {
-    return this.scale * (this.sprite.width / 2) * 0.9;
+    return this.scale * (this.sprite.width / 2) * 0.6;
 };
 
-Ball.prototype.takeBulletHit = function () {
+Ball.prototype.takeHit = function () {
     this.kill();
     // Powerup drops down
     // 25% chance
