@@ -94,7 +94,8 @@ function requestPreloads() {
         player   : "imgs/demonback.png",
         playerRight : "imgs/demonSide.png",
         playerLeft : "imgs/demonLeft.png",
-        ball     : "imgs/bubbleboi.png"
+        ball     : "imgs/bubbleboi.png",
+        bullet : "imgs/pitchfork.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
