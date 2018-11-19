@@ -80,11 +80,6 @@ Player.prototype.update = function (du) {
 Player.prototype.takeHit = function () {
     lives--;
     RESET = true;
-
-    if (lives < 0) {
-        GAME_MODE = 0;
-        lives = 5;
-    }
 };
 
 
