@@ -96,12 +96,6 @@ strokeBox: function (ctx, x, y, w, h) {
     ctx.stroke();
 },
 
-fillCircle: function (ctx, x, y, r) {
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fill();
-},
-
 fillBox: function (ctx, x, y, w, h, style) {
     var oldStyle = ctx.fillStyle;
     ctx.fillStyle = style;
@@ -110,3 +104,10 @@ fillBox: function (ctx, x, y, w, h, style) {
 }
 
 };
+
+function fillCircle(ctx, x, y, r, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+}
