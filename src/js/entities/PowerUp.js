@@ -11,7 +11,7 @@ function PowerUp(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
-
+    this._spatialType = spatialManager.CIRCLE;
 
 }
 
@@ -22,16 +22,21 @@ PowerUp.prototype.update = function (du) {
     // Unregister and check for death
 
     spatialManager.unregister(this);
+
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
     // falls to the floor
     if(this.cy <= g_canvas.height ){
         this.cy += 4 * du;
     }
-
+    
     // (Re-)Register
 
     spatialManager.register(this);
+};
+
+PowerUp.prototype.takeHit = function () {
+    this.kill();
 };
 
 PowerUp.prototype.getRadius = function () {

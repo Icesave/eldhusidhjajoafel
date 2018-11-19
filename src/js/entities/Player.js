@@ -61,8 +61,18 @@ Player.prototype.update = function (du) {
     // Handle firing
     this.maybeFireBullet();
 
-
+    var entities = this.findHitEntity();
+    var player = this; // Finds every entity that is colliding with the bullet
     
+
+    entities.forEach(function(entity) {
+      /* What to do if the bullet is colliding with a rock or another bullet */
+        if(entity instanceof PowerUp) { 
+            player.powerUp = entity;
+            entity.takeHit();
+        }
+    });
+
     spatialManager.register(this);
     
 };
@@ -71,9 +81,6 @@ Player.prototype.takeHit = function () {
     entityManager.reset();
 };
 
-Player.prototype.takePowerUp = function () {
-    this.powerUp = power;
-}
 
 Player.prototype.maybeFireBullet = function () {
 
@@ -93,6 +100,10 @@ Player.prototype.getSpatialHalfHeight  = function () {
 Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy);
 };
+
+Player.prototype.getPowerUp = function () {
+    return this.powerUp;
+}
 
 
 Player.prototype.updatePlayer = function (du) {
