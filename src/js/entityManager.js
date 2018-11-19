@@ -144,6 +144,14 @@ update: function(du) {
         this.reset();
     }
 
+    if (lives < 0) {
+        INDEX = 0;
+        GAME_MODE = 0;
+        lives = 5;
+        this._level = Levels[INDEX];
+        this.reset();
+    }
+
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
