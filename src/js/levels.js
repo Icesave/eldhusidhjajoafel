@@ -5,70 +5,62 @@
 "use strict";
 /* jshint browser: true, devel: true, globalstrict: true */
 
+
+var INDEX = 0;  // This should be used to change levels 
+
 /*
 Array that contains the levels. Each level has certain features 
 that the createLevel function uses to generate a level. 
 */
-
 var Levels = [
     {
         title: "Level 1",
         backgroundColor: "#00ccff", // blue (bara dæmi, þarf ekki að vera)
-        balls: [[600,200,2,-10]],  
+        balls: [[600, 250, 2, -10]],  
         bricks: []
     }, 
     {
         title: "Level 2", 
         backgroundColor: "#99ff66", // green
-        balls: [[200,200,2,-10],[600,200,2,-10]],
+        balls: [[200, 250, 2, -10],
+                [800, 250, -2, -10]],
         bricks: []
     },
     {
         title: "Level 3",
         backgroundColor: "#ff6666", // pink
-        balls: [[250,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],
-        bricks: [[900, 200, 100, 4, true],[800,100, 4, 100, false]]                                       
+        balls: [[250, 200, 2, -10],
+                [550, 200, 2, -10],
+                [825, 150, 2, -10]],
+        bricks: [[850, 200, 150, 4, true],
+                 [700, 100, 4, 104, false]]                                       
     },
     {
         title: "Level 4",
-        backgroundColor: "", //??  
-        balls: [[200,200,2,-10],[300,200,2,-10],[600,200,2,-10],[900,150,2,-10]],  
-        bricks: [[100, 200, 100, 4],[250,100, 100, 4],[400,200, 100, 4],[550,200, 100, 4],[700,200, 100, 4],[850,200, 100, 4]]
+        backgroundColor: "", // ??  
+        balls: [[200, 200, 2, -10],
+                [400, 200, 2, -10],
+                [600, 200, 2, -10],
+                [800, 200, 2, -10]],  
+        bricks: [[87.5, 250, 37.5, 4, true],
+                 [212.5, 250, 37.5, 4, true],
+                 [350, 250, 50, 4, false],
+                 [500, 250, 50, 4, true],
+                 [650, 250, 50, 4, false],
+                 [787.5, 250, 37.5, 4, true],
+                 [915.5, 250, 37.5, 4, true]]
+    },
+    {
+        title: "Level 5", 
+        backgroundColor: "", // ?? 
+        balls: [[175, 150, 2, -10],
+                [500, 150, 2, -10],
+                [650, 325, -2, -10],
+                [825, 150, 2, -10]],
+        bricks: [[175, 200, 171, 4, true],
+                 [350, 100, 4, 104, false],
+                 [500, 200, 146, 4, true],
+                 [650, 100, 4, 104, false],
+                 [825, 200, 171, 4, true]]
     }
 ];
-
-var INDEX = 0;  // This should be used to change levels 
-
-/*
-Creates levels with the information from the levels array
-*/
-
-function createLevel(levelIndex) { 
-
-    ctx.clearRect(0,0,canvas.width, canvas.height);    
-    entityManager.generatePlayer({cx:500, cy:520});  // (500,520)
-
-    levelIndex.balls.forEach(function(element) {
-        entityManager.generateBall(element);      
-    });
-
-    if (levelIndex.bricksOn === true) {
-        levelIndex.bricks.forEach(function(element) {
-            entityManager.generateBrick(element);      
-        });
-    }
-}
-
-/*
-Functions to level up/down, haven't been connected to anything yet
-*/
-
-function levelUp() {
-    index++;
-    createLevel(levelIndex);
-}
-
-function levelDown() {
-    index--;
-    createLevel(levelIndex);
-}

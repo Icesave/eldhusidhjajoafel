@@ -17,6 +17,8 @@ var g_ctx = g_canvas.getContext("2d");
 //GAME MODE 0 = menu, 1 = play game
 var GAME_MODE = 0;
 
+var lives = 5;
+
 
 // The "nominal interval" is the one that all of our time-based units are
 // calibrated to e.g. a velocity unit is "pixels per nominal interval"

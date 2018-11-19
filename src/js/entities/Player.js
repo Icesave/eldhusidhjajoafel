@@ -61,19 +61,32 @@ Player.prototype.update = function (du) {
     // Handle firing
     this.maybeFireBullet();
 
-
+    var entities = this.findHitEntity();
+    var player = this; // Finds every entity that is colliding with the bullet
     
+
+    entities.forEach(function(entity) {
+      /* What to do if the bullet is colliding with a rock or another bullet */
+        if(entity instanceof PowerUp) { 
+            player.powerUp = entity;
+            entity.takeHit();
+        }
+    });
+
     spatialManager.register(this);
     
 };
 
 Player.prototype.takeHit = function () {
+    lives--;
     entityManager.reset();
+
+    if (lives < 0) {
+        GAME_MODE = 0;
+        lives = 5;
+    }
 };
 
-Player.prototype.computeSubStep = function (du) {
-
-};
 
 Player.prototype.maybeFireBullet = function () {
 
@@ -91,8 +104,12 @@ Player.prototype.getSpatialHalfHeight  = function () {
 };
 
 Player.prototype.reset = function () {
-    this.setPos(this.reset_cx, this.reset_cy);
+    this.setPos(this.reset_cx, this.reset_cy, this.lives);
 };
+
+Player.prototype.getPowerUp = function () {
+    return this.powerUp;
+}
 
 
 Player.prototype.updatePlayer = function (du) {
@@ -123,6 +140,7 @@ Player.prototype.updatePlayer = function (du) {
 Player.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
+    this.lives = 5;
     this.sprite.scale = this._scale;
     this.sprite.scale = origScale;
     this.sprite.drawCentredAt(
