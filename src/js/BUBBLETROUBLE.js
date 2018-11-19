@@ -20,7 +20,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-
 // =================
 // UPDATE SIMULATION
 // =================
@@ -75,10 +74,21 @@ function renderSimulation(ctx) {
         menu.renderMenu();
     }
     if (GAME_MODE === 1) {
+        renderLife(ctx);
         entityManager.render(ctx);
     }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
+
+// Render remaining life count
+function renderLife(ctx) {
+    var life = "Extra lives: "
+    ctx.fillText(life, 30, 50);
+    console.log("Lífin: "+lives);
+    for (var i = 0; i < lives; i++) {
+      fillCircle(ctx, 200 + 30*i, 42, 8);
+    }
+  }
 
 
 // =============

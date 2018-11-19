@@ -78,7 +78,13 @@ Player.prototype.update = function (du) {
 };
 
 Player.prototype.takeHit = function () {
+    lives--;
     entityManager.reset();
+
+    if (lives < 0) {
+        GAME_MODE = 0;
+        lives = 5;
+    }
 };
 
 
@@ -98,7 +104,7 @@ Player.prototype.getSpatialHalfHeight  = function () {
 };
 
 Player.prototype.reset = function () {
-    this.setPos(this.reset_cx, this.reset_cy);
+    this.setPos(this.reset_cx, this.reset_cy, this.lives);
 };
 
 Player.prototype.getPowerUp = function () {
@@ -134,6 +140,7 @@ Player.prototype.updatePlayer = function (du) {
 Player.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
+    this.lives = 5;
     this.sprite.scale = this._scale;
     this.sprite.scale = origScale;
     this.sprite.drawCentredAt(
