@@ -69,6 +69,16 @@ init: function() {
     this.set();
 },
 
+reset: function() { 
+    this._player[0].reset();
+    this._bullets.length = 0;
+    this._balls.length = 0;
+    this._powerups.length = 0;
+    this._bricks.length = 0;
+    this._maxBullets = 1;
+    this.set();
+},
+
 set: function() {
     this._level.balls.forEach(function(e) {
         entityManager.generateBall({
@@ -87,16 +97,6 @@ set: function() {
             breakable : e[4]
         });      
     });
-},
-
-reset: function() { 
-    this._player[0].reset();
-    this._bullets.length = 0;
-    this._balls.length = 0;
-    this._powerups.length = 0;
-    this._bricks.length = 0;
-    this._maxBullets = 1;
-    this.set();
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -141,7 +141,7 @@ update: function(du) {
     if(this._balls.length < 1) {
         INDEX += 1;
         this._level = Levels[INDEX];
-        this.reset();
+        RESET = true;
     }
 
     for (var c = 0; c < this._categories.length; ++c) {
@@ -163,8 +163,6 @@ update: function(du) {
             }
         }
     }
-    
-
 },
 
 render: function(ctx) {
