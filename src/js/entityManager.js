@@ -64,7 +64,7 @@ deferredSetup : function () {
 init: function() {
     this._level = Levels[INDEX];
 
-    this.generatePlayer({cx:200, cy:520});  // (500,520)
+    this.generatePlayer({cx:200, cy:520}); 
 
     this.set();
 },

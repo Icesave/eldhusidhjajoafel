@@ -32,7 +32,7 @@ var RESET = false;
 function updateSimulation(du) {
     if(GAME_MODE === 1) {
         processDiagnostics();
-        var status = entityManager.update(du);
+        entityManager.update(du);
         if(RESET) {
             entityManager.reset();
             spatialManager.reset();

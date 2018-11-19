@@ -143,11 +143,7 @@ var spatialManager = {
     * Initial value  
   */
   reset: function() {
-    this._nextSpatialID = 2; // First enity gets 1 as ID
     this._entities.length = 0;
-
-    console.log(this._nextSpatialID);
-    console.log(this._entities);    
   },
 
   /* 
