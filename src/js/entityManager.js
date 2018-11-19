@@ -144,12 +144,12 @@ update: function(du) {
         RESET = true;
     }
 
-    if (lives < 0) {
+    if(lives < 0) {
         INDEX = 0;
         GAME_MODE = 0;
         lives = 5;
         this._level = Levels[INDEX];
-        this.reset();
+        RESET = true;
     }
 
     for (var c = 0; c < this._categories.length; ++c) {
