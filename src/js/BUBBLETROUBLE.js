@@ -91,7 +91,7 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "imgs/demonback.png",
+        player   : "imgs/demonBack.png",
         playerRight : "imgs/demonSide.png",
         playerLeft : "imgs/demonLeft.png",
         ball     : "imgs/bubbleboi.png"
