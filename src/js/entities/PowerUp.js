@@ -11,6 +11,10 @@ function PowerUp(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+
+    // Default sprite, if not otherwise specified
+    this.sprite = this.sprite || g_sprites.player;
+    
     this._spatialType = spatialManager.CIRCLE;
 
 }
@@ -30,6 +34,14 @@ PowerUp.prototype.update = function (du) {
         this.cy += 4 * du;
     }
     
+    // use the right image
+    if(this.type == 1) {
+        this.sprite = g_sprites.playerRight;
+    } 
+    if(this.type == 2) {
+        this.sprite = g_sprites.playerLeft;
+    } 
+
     // (Re-)Register
 
     spatialManager.register(this);

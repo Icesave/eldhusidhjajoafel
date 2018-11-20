@@ -126,12 +126,12 @@ function preloadDone() {
     g_sprites.player  = new Sprite(g_images.player);
     
 
-    g_sprites.bullet = new Sprite(g_images.ball);
+    g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.powerup = new Sprite(g_images.player);
 
     g_sprites.ball = new Sprite(g_images.ball);
 
-    g_sprites.bullet.scale = 0.1;
+    
 
     g_sprites.powerup.scale = 0.5;
 

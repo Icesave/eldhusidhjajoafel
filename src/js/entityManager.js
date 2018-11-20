@@ -102,10 +102,15 @@ set: function() {
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
     if(this._bullets.length < this._maxBullets) {
-      this._bullets.push(new Bullet({
+          this._bullets.push(new Bullet({
           cx : cx, cy : cy + 600,
           halfWidth : 4, halfHeight : 600,
+          powerupBullet : this._bulletPowerUp
       }));
+      // reset the bullet powerup
+      if (this._bulletPowerUp == true) {
+          this._bulletPowerUp = false;
+      }
     }
 },
 
@@ -121,7 +126,7 @@ generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
         cy : cy,
-        type : 1
+        type : Math.floor(Math.random() * 2) + 1  
     }));
 },
 
