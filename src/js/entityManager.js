@@ -33,6 +33,7 @@ _balls : [],
 _powerups : [],
 _bricks : [],
 _maxBullets : 1,
+_bulletPowerUp : false,
 
 // "PRIVATE" METHODS
 
@@ -108,12 +109,20 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
     }
 },
 
+checkPowerUp: function(powerUp, player) {
+    if(powerUp.type==1) {
+        player.getExtraLive();
+    } if(powerUp.type==2) {
+        this._bulletPowerUp = true;
+    }
+},
+
 generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
-        cy : cy
+        cy : cy,
+        type : 1
     }));
-    console.log(this._powerups);
 },
 
 setMaxBullets: function(num){
