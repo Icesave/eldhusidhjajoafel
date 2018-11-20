@@ -80,12 +80,7 @@ Player.prototype.update = function (du) {
 
 Player.prototype.takeHit = function () {
     lives--;
-    entityManager.reset();
-
-    if (lives < 0) {
-        GAME_MODE = 0;
-        lives = 5;
-    }
+    RESET = true;
 };
 
 Player.prototype.getExtraLive = function () {
@@ -94,7 +89,6 @@ Player.prototype.getExtraLive = function () {
 
 
 Player.prototype.maybeFireBullet = function () {
-
     if (keys[this.KEY_FIRE]) {
         entityManager.fireBullet(this.cx, this.cy-this.getRadius());
     }

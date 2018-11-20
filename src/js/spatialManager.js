@@ -136,6 +136,16 @@ var spatialManager = {
     delete this._entities[spatialID];
   },
 
+  /*
+    * reset() 
+    * Resets the spatial manager to 
+    * 
+    * Initial value  
+  */
+  reset: function() {
+    this._entities.length = 0;
+  },
+
   /* 
     * findEntityInRange(e1)
     * Find every entity that is colliding with single entity
