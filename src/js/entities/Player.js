@@ -27,6 +27,7 @@ function Player(descr) {
     this.scale = 1;
     this.rotation = 0;
     this.extraLife = false;
+    this.hasPowerUp = false;
     this._spatialType = spatialManager.SQUARE;
 };
 
@@ -71,6 +72,7 @@ Player.prototype.update = function (du) {
       /* if player collides with powerup */
         if(entity instanceof PowerUp) { 
             player.powerUp = entity;
+            player.hasPowerUp = true;
             entityManager.checkPowerUp(entity, player);
             entity.takeHit();
         }
@@ -92,6 +94,7 @@ Player.prototype.takeHit = function () {
         lives--;
     }
     RESET = true;
+    this.hasPowerUp = false;
     entityManager.clearPowerUp();
 };
 
@@ -148,6 +151,13 @@ Player.prototype.updatePlayer = function (du) {
     }
 };
 
+Player.prototype.drawPowerUp = function (ctx) {
+   var sprite = this.powerUp.getSprite();
+   sprite.drawCentredAt(
+    ctx, 900, 50);
+
+}
+
 Player.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
@@ -157,4 +167,14 @@ Player.prototype.render = function (ctx) {
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
+
+    // if player has a powerup then draw it on the screen
+    if(this.hasPowerUp){
+        this.drawPowerUp(ctx);
+    }
+    
+    this.sprite.drawCentredAt(
+        ctx, this.cx, this.cy, this.rotation
+    );
+
 };

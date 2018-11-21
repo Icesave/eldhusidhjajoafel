@@ -73,6 +73,9 @@ PowerUp.prototype.setSprite = function () {
      }
 }
 
+PowerUp.prototype.getSprite = function () {
+    return this.sprite;
+}
 
 PowerUp.prototype.render = function (ctx) {
 

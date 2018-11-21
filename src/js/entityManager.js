@@ -118,7 +118,9 @@ clearPowerUp: function() {
     }
 
     this._player[0].clearExtraLife();
-    
+    this._player[0].hasPowerup = false;
+
+
     this._maxBullets = 1;
 },
 
