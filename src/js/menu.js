@@ -11,6 +11,7 @@
 var menu = {
 renderMenu : function() {
   util.fillBox(ctx,0,0,1000,600,"black");
+  ctx.drawImage(g_images.menuDemon, 600, 100);
 
   ctx.font = "50px Arial";
   ctx.fillStyle = "pink";
