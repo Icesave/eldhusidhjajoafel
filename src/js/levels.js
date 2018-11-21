@@ -8,6 +8,7 @@
 
 var INDEX = 0;  // This should be used to change levels 
 
+
 /*
 Array that contains the levels. Each level has certain features 
 that the createLevel function uses to generate a level. 
@@ -15,20 +16,20 @@ that the createLevel function uses to generate a level.
 var Levels = [
     {
         title: "Level 1",
-        backgroundColor: "#00ccff", // blue (bara dæmi, þarf ekki að vera)
+        background: util.setBackground("imgs/cavebg.png"), 
         balls: [[600, 250, 2, -10]],  
         bricks: []
     }, 
     {
         title: "Level 2", 
-        backgroundColor: "#99ff66", // green
+        background: util.setBackground("imgs/icebg.png"),
         balls: [[200, 250, 2, -10],
                 [800, 250, -2, -10]],
         bricks: []
     },
     {
         title: "Level 3",
-        backgroundColor: "#ff6666", // pink
+        background: util.setBackground("imgs/hellbg.png"),
         balls: [[250, 200, 2, -10],
                 [550, 200, 2, -10],
                 [825, 150, 2, -10]],
@@ -37,7 +38,7 @@ var Levels = [
     },
     {
         title: "Level 4",
-        backgroundColor: "", // ??  
+        background: util.setBackground("imgs/toxicbg.png"),  
         balls: [[200, 200, 2, -10],
                 [400, 200, 2, -10],
                 [600, 200, 2, -10],
@@ -52,7 +53,7 @@ var Levels = [
     },
     {
         title: "Level 5", 
-        backgroundColor: "", // ?? 
+        background: util.setBackground("imgs/candylandbg.png"),
         balls: [[175, 150, 2, -10],
                 [500, 150, 2, -10],
                 [650, 325, -2, -10],
