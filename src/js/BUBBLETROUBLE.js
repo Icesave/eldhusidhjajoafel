@@ -113,19 +113,19 @@ function requestPreloads() {
 
     var requiredImages = {
         // TODO: use another image for player
-        player   : "imgs/demonBack.png",
-        playerRight : "imgs/demonSide.png",
-        playerLeft : "imgs/demonLeft.png",
+        player   : "imgs/Demon/demonBack.png",
+        playerRight : "imgs/Demon/demonSide.png",
+        playerLeft : "imgs/Demon/demonLeft.png",
         ball     : "imgs/bubbleboi.png",
         bullet : "imgs/pitchfork.png",
        
-        lifePu : "imgs/HeartPu.png",
-        bulletPu : "imgs/BulletPu.png",
-        bulletPlusPu : "imgs/PulletPlusPu.png",
-        stopPu : "imgs/stopPu.png",
+        lifePu : "imgs/PowerUps/HeartPu.png",
+        bulletPu : "imgs/PowerUps/BulletPu.png",
+        bulletPlusPu : "imgs/PowerUps/PulletPlusPu.png",
+        stopPu : "imgs/PowerUps/stopPu.png",
        
-        menuDemon : "imgs/demonFront.png",
-        menuBg : "imgs/menuBg.png"
+        menuDemon : "imgs/Demon/demonFront.png",
+        menuBg : "imgs/Backgrounds/menuBg.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
