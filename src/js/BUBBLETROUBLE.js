@@ -120,7 +120,9 @@ function requestPreloads() {
         lifePu : "imgs/HeartPu.png",
         bulletPu : "imgs/BulletPu.png",
         bulletPlusPu : "imgs/PulletPlusPu.png",
-        stopPu : "imgs/stopPu.png"
+        stopPu : "imgs/stopPu.png",
+       
+        menuDemon : "imgs/demonFront.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
