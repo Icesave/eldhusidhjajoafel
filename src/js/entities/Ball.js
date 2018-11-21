@@ -47,8 +47,8 @@ Ball.prototype.update = function (du) {
     }
 
     if(this.pauseLifespan<0) {
-        entityManager.clearPowerUp(); 
-        entityManager.clearPlayerPowerup();
+        this.pause = false;
+        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
     }
     
     var prevX = this.cx;
@@ -104,8 +104,15 @@ Ball.prototype.update = function (du) {
                 ball.xVel *= -1;
             } 
             else if(ball.colliding == "y"){
-                    ball.yVel = ball.origYVel/2;
+                ball.yVel = ball.origYVel/2;
+                if(ball.prevY > entity.getPos().y) {
+                    ball.yVel *= -1;
+                }
             }
+            else{
+                ball.yVel *= -1;
+                ball.xVel *= -1;
+            } 
 
             ball.colliding = "";
         }
@@ -117,7 +124,8 @@ Ball.prototype.update = function (du) {
 
 Ball.prototype.undoPause= function (){
     this.pause=false;
-    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
+    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
+    
 }
 
 Ball.prototype.getRadius = function () {
