@@ -16,20 +16,20 @@ that the createLevel function uses to generate a level.
 var Levels = [
     {
         title: "Level 1",
-        background: util.setBackground("imgs/cavebg.png"), 
+        background: "imgs/cavebg.png", 
         balls: [[600, 250, 2, -10]],  
         bricks: []
     }, 
     {
         title: "Level 2", 
-        background: util.setBackground("imgs/icebg.png"),
+        background: "imgs/Icebg.png",
         balls: [[200, 250, 2, -10],
                 [800, 250, -2, -10]],
         bricks: []
     },
     {
         title: "Level 3",
-        background: util.setBackground("imgs/hellbg.png"),
+        background: "imgs/Hellbg.png",
         balls: [[250, 200, 2, -10],
                 [550, 200, 2, -10],
                 [825, 150, 2, -10]],
@@ -38,7 +38,7 @@ var Levels = [
     },
     {
         title: "Level 4",
-        background: util.setBackground("imgs/toxicbg.png"),  
+        background: "imgs/toxicbg.png",  
         balls: [[200, 200, 2, -10],
                 [400, 200, 2, -10],
                 [600, 200, 2, -10],
@@ -53,7 +53,7 @@ var Levels = [
     },
     {
         title: "Level 5", 
-        background: util.setBackground("imgs/candylandbg.png"),
+        background: "imgs/candylandbg.png",
         balls: [[175, 150, 2, -10],
                 [500, 150, 2, -10],
                 [650, 325, -2, -10],

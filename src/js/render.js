@@ -95,7 +95,9 @@ function render(ctx) {
     }
     if(eatKey(KILL)) {
       console.log("DEBUG: Kill ball");
-      entityManager._balls[0].takeHit()
+      if(entityManager._balls.length > 0) {
+        entityManager._balls[0].takeHit();
+      }
       console.log("---------------------------");
     }
     var testpu = new PowerUp();

@@ -33,6 +33,7 @@ function updateSimulation(du) {
     if(GAME_MODE === 1) {
         processDiagnostics();
         entityManager.update(du);
+        util.setBackground(Levels[INDEX]["background"]);
         if(RESET) {
             entityManager.reset();
             spatialManager.reset();
