@@ -115,10 +115,17 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
 },
 
 checkPowerUp: function(powerUp, player) {
+    // player gets an extra life
     if(powerUp.type==1) {
-        player.getExtraLive();
-    } if(powerUp.type==2) {
+        player.getExtraLife();
+    } 
+    // the bullet sticks 
+    if(powerUp.type==2) {
         this._bulletPowerUp = true;
+    }
+    // player can shoot two bullets at the time
+    if (powerUp.type==3) {
+        this.setMaxBullets(2);
     }
 },
 
@@ -126,7 +133,7 @@ generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
         cy : cy,
-        type : Math.floor(Math.random() * 2) + 1  
+        type : Math.floor(Math.random() * 3) + 1  
     }));
 },
 

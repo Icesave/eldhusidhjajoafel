@@ -83,7 +83,7 @@ Player.prototype.takeHit = function () {
     RESET = true;
 };
 
-Player.prototype.getExtraLive = function () {
+Player.prototype.getExtraLife = function () {
     lives++;
 }
 
