@@ -33,6 +33,7 @@ _balls : [],
 _powerups : [],
 _bricks : [],
 _maxBullets : 1,
+_bulletPowerUp : false,
 
 // "PRIVATE" METHODS
 
@@ -64,7 +65,7 @@ deferredSetup : function () {
 init: function() {
     this._level = Levels[INDEX];
 
-    this.generatePlayer({cx:200, cy:520}); 
+    this.generatePlayer({cx:500, cy:520}); 
 
     this.set();
 },
@@ -101,19 +102,39 @@ set: function() {
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
     if(this._bullets.length < this._maxBullets) {
-      this._bullets.push(new Bullet({
+          this._bullets.push(new Bullet({
           cx : cx, cy : cy + 600,
           halfWidth : 4, halfHeight : 600,
+          powerupBullet : this._bulletPowerUp
       }));
+      // reset the bullet powerup
+      if (this._bulletPowerUp == true) {
+          this._bulletPowerUp = false;
+      }
+    }
+},
+
+checkPowerUp: function(powerUp, player) {
+    // player gets an extra life
+    if(powerUp.type==1) {
+        player.getExtraLife();
+    } 
+    // the bullet sticks 
+    if(powerUp.type==2) {
+        this._bulletPowerUp = true;
+    }
+    // player can shoot two bullets at the time
+    if (powerUp.type==3) {
+        this.setMaxBullets(2);
     }
 },
 
 generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
-        cy : cy
+        cy : cy,
+        type : Math.floor(Math.random() * 3) + 1  
     }));
-    console.log(this._powerups);
 },
 
 setMaxBullets: function(num){

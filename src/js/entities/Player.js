@@ -66,9 +66,10 @@ Player.prototype.update = function (du) {
     
 
     entities.forEach(function(entity) {
-      /* What to do if the bullet is colliding with a rock or another bullet */
+      /* if player collides with powerup */
         if(entity instanceof PowerUp) { 
             player.powerUp = entity;
+            entityManager.checkPowerUp(entity, player);
             entity.takeHit();
         }
     });
@@ -81,6 +82,10 @@ Player.prototype.takeHit = function () {
     lives--;
     RESET = true;
 };
+
+Player.prototype.getExtraLife = function () {
+    lives++;
+}
 
 
 Player.prototype.maybeFireBullet = function () {

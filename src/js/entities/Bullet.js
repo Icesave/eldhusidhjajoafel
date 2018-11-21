@@ -54,12 +54,17 @@ Bullet.prototype.update = function (du) {
         return entityManager.KILL_ME_NOW; 
     }
 
-    if(this.cy >= 25 ){
+    if(this.cy >= this.halfHeight*1.5 ){
         this.cy -= 10 * du;
     }
 
-    if (this.cy < this.halfHeight) {
-        return entityManager.KILL_ME_NOW;
+    if (this.cy < this.halfHeight*1.5) {
+        if(!this.powerupBullet){
+            return entityManager.KILL_ME_NOW;
+        } else {
+            // stop the bullet
+            this.cy += 10 * du;
+        }
     }
 
     var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
@@ -82,6 +87,6 @@ Bullet.prototype.takeHit = function () {
 
 Bullet.prototype.render = function (ctx) {
     g_sprites.bullet.drawCentredAt(
-        ctx, this.cx, this.cy - this.spatialHalfHeight, this.rotation
+        ctx, this.cx, this.cy - this.spatialHalfHeight
     );
 };

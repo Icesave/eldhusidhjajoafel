@@ -111,7 +111,13 @@ function requestPreloads() {
         player   : "imgs/demonBack.png",
         playerRight : "imgs/demonSide.png",
         playerLeft : "imgs/demonLeft.png",
-        ball     : "imgs/bubbleboi.png"
+        ball     : "imgs/bubbleboi.png",
+        bullet : "imgs/pitchfork.png",
+       
+        lifePu : "imgs/HeartPu.png",
+        bulletPu : "imgs/BulletPu.png",
+        bulletPlusPu : "imgs/PulletPlusPu.png",
+        stopPu : "imgs/stopPu.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -126,12 +132,16 @@ function preloadDone() {
     g_sprites.player  = new Sprite(g_images.player);
     
 
-    g_sprites.bullet = new Sprite(g_images.ball);
+    g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.powerup = new Sprite(g_images.player);
 
     g_sprites.ball = new Sprite(g_images.ball);
 
-    g_sprites.bullet.scale = 0.1;
+    g_sprites.lifePu = new Sprite(g_images.lifePu);
+    g_sprites.bulletPu = new Sprite(g_images.bulletPu);
+    g_sprites.bulletPlusPu = new Sprite(g_images.bulletPlusPu);
+    g_sprites.stopPu = new Sprite(g_images.stopPu);
+
 
     g_sprites.powerup.scale = 0.5;
 
