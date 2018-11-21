@@ -13,11 +13,11 @@ function Brick(descr) {
 
     if(this.breakable) {
         this.strokeStyle = "#790000";
-        this.fillStyle = "blue";
+        this.fillStyle = "080808";
     } 
     else {
         this.strokeStyle = "#790000";
-        this.fillStyle = "#D20000";
+        this.fillStyle = "#808080";
 
     }
 }
