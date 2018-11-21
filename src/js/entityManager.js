@@ -77,6 +77,8 @@ reset: function() {
     this._powerups.length = 0;
     this._bricks.length = 0;
     this._maxBullets = 1;
+    this.clearPlayerPowerup();
+    this.clearPowerUp();
     this.set();
 },
 
