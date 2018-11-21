@@ -79,10 +79,11 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     if (GAME_MODE === 0) {
-        gameSong.play();
+        gameSong.pause();
         menu.renderMenu();
     }
     if (GAME_MODE === 1) {
+        gameSong.play();
         entityManager.render(ctx);
         renderLife(ctx);
     }
