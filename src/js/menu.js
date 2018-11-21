@@ -10,7 +10,7 @@
 
 var menu = {
 renderMenu : function() {
-  util.fillBox(ctx,0,0,1000,600,"black");
+  util.fillBox(ctx,0,0,1000,600,"#808080");
   ctx.drawImage(g_images.menuDemon, 600, 100);
 
   ctx.font = "50px Arial";
