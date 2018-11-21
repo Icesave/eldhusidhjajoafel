@@ -75,6 +75,7 @@ Player.prototype.update = function (du) {
     entities.forEach(function(entity) {
       /* if player collides with powerup */
         if(entity instanceof PowerUp) { 
+            powerUp.play();
             player.powerUp = entity;
             player.hasPowerUp = true;
             entityManager.checkPowerUp(entity, player);
