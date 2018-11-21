@@ -77,6 +77,8 @@ reset: function() {
     this._powerups.length = 0;
     this._bricks.length = 0;
     this._maxBullets = 1;
+    this.clearPlayerPowerup();
+    this.clearPowerUp();
     this.set();
 },
 
@@ -110,7 +112,12 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
     }
 },
 
+clearPlayerPowerup: function() {
+    this._player[0].clearHasPowerup();
+},
+
 clearPowerUp: function() {
+    
     this._bulletPowerUp = false;
 
     for (var i = 0; i< this._balls.length; ++i) {
@@ -118,9 +125,7 @@ clearPowerUp: function() {
     }
 
     this._player[0].clearExtraLife();
-    this._player[0].hasPowerup = false;
-
-
+    
     this._maxBullets = 1;
 },
 
@@ -183,13 +188,15 @@ resetPlayer: function() {
 
 update: function(du) {
     if(this._balls.length < 1) {
+        levelUp.play();
         INDEX += 1;
         this._level = Levels[INDEX];
         RESET = true;
     }
 
     if(lives < 0) {
-        GAME_MODE = 0;
+        gameOver.play();
+        GAME_MODE = 2;
         lives = 5;
         INDEX = 0;
         this._level = Levels[INDEX];

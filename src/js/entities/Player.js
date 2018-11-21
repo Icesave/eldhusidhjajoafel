@@ -39,6 +39,10 @@ Player.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
 };
 
+Player.prototype.clearHasPowerup = function () {
+    this.hasPowerUp = false;
+}
+
 Player.prototype.KEY_LEFT   = keyCode('A');
 Player.prototype.KEY_RIGHT  = keyCode('D');
 
@@ -71,6 +75,7 @@ Player.prototype.update = function (du) {
     entities.forEach(function(entity) {
       /* if player collides with powerup */
         if(entity instanceof PowerUp) { 
+            powerUp.play();
             player.powerUp = entity;
             player.hasPowerUp = true;
             entityManager.checkPowerUp(entity, player);
@@ -93,6 +98,7 @@ Player.prototype.takeHit = function () {
     } else {
         lives--;
     }
+    takeHit.play();
     RESET = true;
     this.hasPowerUp = false;
     entityManager.clearPowerUp();

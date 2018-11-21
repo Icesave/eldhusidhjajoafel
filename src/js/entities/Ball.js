@@ -47,8 +47,8 @@ Ball.prototype.update = function (du) {
     }
 
     if(this.pauseLifespan<0) {
-        this.pause = false;
-        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
+        entityManager.clearPowerUp(); 
+        entityManager.clearPlayerPowerup();
     }
     
     var prevX = this.cx;
@@ -117,8 +117,7 @@ Ball.prototype.update = function (du) {
 
 Ball.prototype.undoPause= function (){
     this.pause=false;
-    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
-    
+    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
 }
 
 Ball.prototype.getRadius = function () {

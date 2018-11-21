@@ -5,31 +5,30 @@
 "use strict";
 /* jshint browser: true, devel: true, globalstrict: true */
 
-
-var INDEX = 0;  // This should be used to change levels 
-
+// Global variable used to change the levels
+var INDEX = 0;  
 
 /*
 Array that contains the levels. Each level has certain features 
-that the createLevel function uses to generate a level. 
+that the entityManager then uses to generate a level.  
 */
 var Levels = [
     {
         title: "Level 1",
-        background: "imgs/cavebg.png", 
+        background: "imgs/Backgrounds/cavebg.png", 
         balls: [[600, 250, 2, -10]],  
         bricks: []
     }, 
     {
         title: "Level 2", 
-        background: "imgs/Icebg.png",
+        background: "imgs/Backgrounds/Icebg.png",
         balls: [[200, 250, 2, -10],
                 [800, 250, -2, -10]],
         bricks: []
     },
     {
         title: "Level 3",
-        background: "imgs/Hellbg.png",
+        background: "imgs/Backgrounds/Hellbg.png",
         balls: [[250, 200, 2, -10],
                 [550, 200, 2, -10],
                 [825, 150, 2, -10]],
@@ -38,7 +37,7 @@ var Levels = [
     },
     {
         title: "Level 4",
-        background: "imgs/toxicbg.png",  
+        background: "imgs/Backgrounds/toxicbg.png",  
         balls: [[200, 200, 2, -10],
                 [400, 200, 2, -10],
                 [600, 200, 2, -10],
@@ -53,7 +52,7 @@ var Levels = [
     },
     {
         title: "Level 5", 
-        background: "imgs/candylandbg.png",
+        background: "imgs/Backgrounds/candylandbg.png",
         balls: [[175, 150, 2, -10],
                 [500, 150, 2, -10],
                 [650, 325, -2, -10],
