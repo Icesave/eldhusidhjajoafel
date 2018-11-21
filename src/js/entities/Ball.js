@@ -25,6 +25,7 @@ function Ball(descr) {
     // Default sprite and scale, if not otherwise specified
     this.sprite = this.sprite || g_sprites.ball;
     this.scale  = this.scale  || 0.5;
+    this.pause = false;
     
     this.rotation = Math.random()*6;
 
@@ -33,10 +34,21 @@ function Ball(descr) {
 
 Ball.prototype = new Entity();
 
+
+Ball.prototype.pauseLifespan = 4000 / NOMINAL_UPDATE_INTERVAL;
 var NOMINAL_GRAVITY = 0.12;
 Ball.prototype.update = function (du) {
-  
+    
     spatialManager.unregister(this);
+
+    if(this.pause){
+        this.pauseLifespan -= du; 
+    }
+
+    if(this.pauseLifespan<0) {
+        this.pause = false;
+        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
+    }
     
     var prevX = this.cx;
     var prevY = this.cy;
@@ -52,21 +64,24 @@ Ball.prototype.update = function (du) {
     if (this._isDeadNow) {
         return entityManager.KILL_ME_NOW;
     }
+    if (!this.pause){
+        var r = this.getRadius();
+        // Bounce off top, bottom and side edges
+        if(this.nextY < r) {
+            this.yVel *= -1;
+        }  
+        if(this.nextY > g_canvas.height - r) {
+            this.yVel = this.origYVel;
+        }
+        if (this.nextX < r || this.nextX > g_canvas.width - r) {
+            this.xVel *= -1;
+        }
+        
 
-    var r = this.getRadius();
-    // Bounce off top, bottom and side edges
-    if(this.nextY < r) {
-        this.yVel *= -1;
-    }  
-    if(this.nextY > g_canvas.height - r) {
-        this.yVel = this.origYVel;
-    }
-    if (this.nextX < r || this.nextX > g_canvas.width - r) {
-        this.xVel *= -1;
+        this.cx += this.xVel * du;
+        this.cy += this.yVel * du;
     }
     
-    this.cx += this.xVel * du;
-    this.cy += this.yVel * du;
 
 
 
@@ -95,6 +110,10 @@ Ball.prototype.update = function (du) {
 Ball.prototype.getRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.6;
 };
+
+Ball.prototype.setPause = function () {
+    this.pause = true;
+}
 
 Ball.prototype.takeHit = function () {
     this.kill();

@@ -127,13 +127,23 @@ checkPowerUp: function(powerUp, player) {
     if (powerUp.type==3) {
         this.setMaxBullets(2);
     }
+    if (powerUp.type==4) {
+        this.pauseAllBalls();
+    }
+},
+
+pauseAllBalls: function() {
+    // pause all the balls 
+    for (var i = 0; i< this._balls.length; ++i) {
+        this._balls[i].setPause();
+    }
 },
 
 generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
         cy : cy,
-        type : Math.floor(Math.random() * 3) + 1  
+        type : Math.floor(Math.random() * 4) + 1 
     }));
 },
 
