@@ -97,6 +97,7 @@ Player.prototype.takeHit = function () {
     } else {
         lives--;
     }
+    takeHit.play();
     RESET = true;
     this.hasPowerUp = false;
     entityManager.clearPowerUp();
