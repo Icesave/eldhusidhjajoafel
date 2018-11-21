@@ -39,6 +39,10 @@ Player.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
 };
 
+Player.prototype.clearHasPowerup = function () {
+    this.hasPowerUp = false;
+}
+
 Player.prototype.KEY_LEFT   = keyCode('A');
 Player.prototype.KEY_RIGHT  = keyCode('D');
 

@@ -110,7 +110,12 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
     }
 },
 
+clearPlayerPowerup: function() {
+    this._player[0].clearHasPowerup();
+},
+
 clearPowerUp: function() {
+    
     this._bulletPowerUp = false;
 
     for (var i = 0; i< this._balls.length; ++i) {
@@ -118,9 +123,7 @@ clearPowerUp: function() {
     }
 
     this._player[0].clearExtraLife();
-    this._player[0].hasPowerup = false;
-
-
+    
     this._maxBullets = 1;
 },
 
