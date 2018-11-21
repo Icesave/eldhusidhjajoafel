@@ -79,6 +79,7 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     if (GAME_MODE === 0) {
+        gameSong.play();
         menu.renderMenu();
     }
     if (GAME_MODE === 1) {
