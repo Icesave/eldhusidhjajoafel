@@ -20,15 +20,15 @@ var g_debugMode = false; // Enables debug mode
 
 var g_frameCounter = 1;
 
-var INFO = 'I'.charCodeAt(0); 
-var KILL = 'K'.charCodeAt(0); 
+var INFO = keyCode('I'); 
+var KILL = keyCode('K'); 
 
-var TOGGLE_DEBUGMODE = 'M'.charCodeAt(0);
-var TOGGLE_CLEAR = 'C'.charCodeAt(0);
-var TOGGLE_BOX = 'B'.charCodeAt(0);
-var TOGGLE_UNDO_BOX = 'U'.charCodeAt(0);
-var TOGGLE_FLIPFLOP = 'F'.charCodeAt(0);
-var TOGGLE_RENDER = 'N'.charCodeAt(0);
+var TOGGLE_DEBUGMODE = keyCode('M');
+var TOGGLE_CLEAR = keyCode('C');
+var TOGGLE_BOX = keyCode('B');
+var TOGGLE_UNDO_BOX = keyCode('U');
+var TOGGLE_FLIPFLOP = keyCode('F');
+var TOGGLE_RENDER = keyCode('N');
 
 /* 
   * render(ctx)
@@ -99,6 +99,7 @@ function render(ctx) {
   // To clear or not to clear 
   if(g_doClear) { 
     util.clearCanvas(ctx);
+    ctx.drawImage(g_background,0,0);
   }
 
   // Box to demonstrate that it is always 

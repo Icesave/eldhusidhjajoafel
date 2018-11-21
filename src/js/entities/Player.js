@@ -55,7 +55,9 @@ Player.prototype.update = function (du) {
     // TODO: YOUR STUFF HERE! --- Unregister and check for death
     spatialManager.unregister(this);
 
-    if (this._isDeadNow) return entityManager.KILL_ME_NOW;
+    if (this._isDeadNow) {
+        return entityManager.KILL_ME_NOW;
+    }
 
     this.updatePlayer();
     // Handle firing
@@ -89,7 +91,7 @@ Player.prototype.getExtraLife = function () {
 
 
 Player.prototype.maybeFireBullet = function () {
-    if (keys[this.KEY_FIRE]) {
+    if(eatKey(this.KEY_FIRE)) {
         entityManager.fireBullet(this.cx, this.cy-this.getRadius());
     }
 };

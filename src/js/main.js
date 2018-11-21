@@ -12,11 +12,11 @@
 */
 
 // Mainloop-level debug-rendering
-var TOGGLE_TIMER_SHOW = 'T'.charCodeAt(0);
+var TOGGLE_TIMER_SHOW = keyCode('T');
 
 // Quit the game
-var KEY_QUIT = 'Q'.charCodeAt(0);
-var START_GAME = 'Y'.charCodeAt(0);
+var KEY_QUIT = keyCode('Q');
+var START_GAME = keyCode('Y');
 
 
 var main = {
