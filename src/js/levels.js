@@ -5,13 +5,12 @@
 "use strict";
 /* jshint browser: true, devel: true, globalstrict: true */
 
-
-var INDEX = 0;  // This should be used to change levels 
-
+// Global variable used to change the levels
+var INDEX = 0;  
 
 /*
 Array that contains the levels. Each level has certain features 
-that the createLevel function uses to generate a level. 
+that the entityManager then uses to generate a level.  
 */
 var Levels = [
     {
