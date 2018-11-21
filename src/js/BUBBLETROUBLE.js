@@ -52,9 +52,13 @@ var KEY_RESET = keyCode('R');
 
 function processDiagnostics() {
 
-    if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
+    if (eatKey(KEY_SPATIAL)) {
+        g_renderSpatialDebug = !g_renderSpatialDebug;
+    }
 
-    if (eatKey(KEY_RESET)) entityManager.resetPlayer();
+    if (eatKey(KEY_RESET)) {
+        RESET = true;
+    }
 
 }
 
@@ -80,7 +84,6 @@ function renderSimulation(ctx) {
     if (GAME_MODE === 1) {
         entityManager.render(ctx);
         renderLife(ctx);
-        console.log("boi");
     }
     if (g_renderSpatialDebug) {
         spatialManager.render(ctx);

@@ -54,11 +54,11 @@ Bullet.prototype.update = function (du) {
         return entityManager.KILL_ME_NOW; 
     }
 
-    if(this.cy >= this.halfHeight*1.5 ){
+    if(this.cy >= this.halfHeight){
         this.cy -= 10 * du;
     }
 
-    if (this.cy < this.halfHeight*1.5) {
+    if (this.cy < this.halfHeight) {
         if(!this.powerupBullet){
             return entityManager.KILL_ME_NOW;
         } else {
@@ -87,6 +87,6 @@ Bullet.prototype.takeHit = function () {
 
 Bullet.prototype.render = function (ctx) {
     g_sprites.bullet.drawCentredAt(
-        ctx, this.cx, this.cy - this.spatialHalfHeight
+        ctx, this.cx, this.cy - this.spatialHalfHeight/2
     );
 };

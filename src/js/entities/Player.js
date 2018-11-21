@@ -38,10 +38,10 @@ Player.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
 };
 
-Player.prototype.KEY_LEFT   = 'A'.charCodeAt(0);
-Player.prototype.KEY_RIGHT  = 'D'.charCodeAt(0);
+Player.prototype.KEY_LEFT   = keyCode('A');
+Player.prototype.KEY_RIGHT  = keyCode('D');
 
-Player.prototype.KEY_FIRE   = ' '.charCodeAt(0);
+Player.prototype.KEY_FIRE   = keyCode(' ');
 
 // Initial, inheritable, default values
 
