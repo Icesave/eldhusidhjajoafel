@@ -30,8 +30,11 @@ PowerUp.prototype.update = function (du) {
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
     // falls to the floor
-    if(this.cy <= g_canvas.height ){
+    if(this.cy <= g_canvas.height){
         this.cy += 4 * du;
+    }
+    else {
+        this.takeHit();
     }
     
     // use the right image

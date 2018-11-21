@@ -61,21 +61,13 @@ distSq: function(x1, y1, x2, y2) {
     return this.square(x2-x1) + this.square(y2-y1);
 },
 
-wrappedDistSq: function(x1, y1, x2, y2, xWrap, yWrap) {
-    var dx = Math.abs(x2-x1),
-	dy = Math.abs(y2-y1);
-    if (dx > xWrap/2) {
-	dx = xWrap - dx;
-    };
-    if (dy > yWrap/2) {
-	dy = yWrap - dy;
-    }
-    return this.square(dx) + this.square(dy);
-},
-
 
 // CANVAS OPS
 // ==========
+
+setBackground: function (imgUrl) {
+    g_background.src = imgUrl;
+},
 
 clearCanvas: function (ctx) {
     var prevfillStyle = ctx.fillStyle;

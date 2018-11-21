@@ -13,7 +13,7 @@ Evil, ugly (but "necessary") globals, which everyone can use.
 
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
-var g_background = "";
+var g_background = new Image;
 
 //GAME MODE 0 = menu, 1 = play game
 var GAME_MODE = 0;

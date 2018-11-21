@@ -47,7 +47,6 @@ var g_renderSpatialDebug = false;
 
 var KEY_SPATIAL = keyCode('X');
 
-var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
 
 function processDiagnostics() {
@@ -147,7 +146,6 @@ function preloadDone() {
 
 
     g_sprites.powerup.scale = 0.5;
-
 
     entityManager.init();
 
