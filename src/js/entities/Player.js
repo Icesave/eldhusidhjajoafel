@@ -26,7 +26,7 @@ function Player(descr) {
     // Set normal drawing scale, and warp state off
     this.scale = 1;
     this.rotation = 0;
-
+    this.extraLife = false;
     this._spatialType = spatialManager.SQUARE;
 };
 
@@ -80,14 +80,23 @@ Player.prototype.update = function (du) {
     
 };
 
+
+Player.prototype.clearExtraLife = function () {
+    this.extraLife = false;
+}
+
 Player.prototype.takeHit = function () {
-    lives--;
+    if(this.extraLife) {
+        this.extraLife = false;
+    } else {
+        lives--;
+    }
     RESET = true;
     entityManager.clearPowerUp();
 };
 
 Player.prototype.getExtraLife = function () {
-    lives++;
+    this.extraLife = true;
 }
 
 

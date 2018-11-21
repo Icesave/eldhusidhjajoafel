@@ -117,6 +117,8 @@ clearPowerUp: function() {
         this._balls[i].undoPause();
     }
 
+    this._player[0].clearExtraLife();
+    
     this._maxBullets = 1;
 },
 
