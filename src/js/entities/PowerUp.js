@@ -58,9 +58,7 @@ PowerUp.prototype.getRadius = function () {
     return 4;
 };
 
-PowerUp.prototype.render = function (ctx) {
-
-    // draw the powerup
+PowerUp.prototype.setSprite = function () {
     if(this.type==1) { 
         this.sprite = g_sprites.lifePu;
      }
@@ -73,7 +71,13 @@ PowerUp.prototype.render = function (ctx) {
      if(this.type==4) {
          this.sprite = g_sprites.stopPu;
      }
+}
 
+
+PowerUp.prototype.render = function (ctx) {
+
+    // draw the powerup
+    this.setSprite();
 
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
