@@ -196,7 +196,7 @@ update: function(du) {
 
     if(lives < 0) {
         gameOver.play();
-        GAME_MODE = 0;
+        GAME_MODE = 2;
         lives = 5;
         INDEX = 0;
         this._level = Levels[INDEX];

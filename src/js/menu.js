@@ -26,4 +26,40 @@ renderMenu : function() {
   ctx.fillText("Move player right: Press 'D'", 100, 440);
   ctx.fillText("Move player left: Press 'A'", 100, 480);
   },
+
+  renderGameOverMenu : function() {
+    util.fillBox(ctx,0,0,1000,600,"#808080");
+    ctx.drawImage(g_images.menuBg, 0, 0);
+    ctx.drawImage(g_images.menuDemon, 600, 100);
+  
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "pink";
+    ctx.fillText("GAME OVER", 100, 180);
+    ctx.fillText("Press Y to play game", 100,250);
+  
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("HOW TO:", 100, 350);
+    ctx.fillText("Shoot: Press space", 100, 400);
+    ctx.fillText("Move player right: Press 'D'", 100, 440);
+    ctx.fillText("Move player left: Press 'A'", 100, 480);
+    },
+
+    renderGameWinMenu : function() {
+      util.fillBox(ctx,0,0,1000,600,"#808080");
+      ctx.drawImage(g_images.menuBg, 0, 0);
+      ctx.drawImage(g_images.menuDemon, 600, 100);
+    
+      ctx.font = "50px Arial";
+      ctx.fillStyle = "pink";
+      ctx.fillText("YOU WON!", 100, 180);
+      ctx.fillText("Press Y to play game", 100,250);
+    
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "white";
+      ctx.fillText("HOW TO:", 100, 350);
+      ctx.fillText("Shoot: Press space", 100, 400);
+      ctx.fillText("Move player right: Press 'D'", 100, 440);
+      ctx.fillText("Move player left: Press 'A'", 100, 480);
+      },
 };

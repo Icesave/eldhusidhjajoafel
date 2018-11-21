@@ -87,6 +87,15 @@ function renderSimulation(ctx) {
         entityManager.render(ctx);
         renderLife(ctx);
     }
+    if (GAME_MODE === 2) {
+        gameSong.pause();
+        menu.renderGameOverMenu();
+    }
+    if (GAME_MODE === 3) {
+        gameSong.pause();
+        menu.renderGameWinMenu();
+    }
+
     if (g_renderSpatialDebug) {
         spatialManager.render(ctx);
     }
