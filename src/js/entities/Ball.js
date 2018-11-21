@@ -47,7 +47,7 @@ Ball.prototype.update = function (du) {
 
     if(this.pauseLifespan<0) {
         this.pause = false;
-        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
+        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
     }
     
     var prevX = this.cx;
@@ -106,6 +106,12 @@ Ball.prototype.update = function (du) {
 
     spatialManager.register(this);
 };
+
+Ball.prototype.undoPause= function (){
+    this.pause=false;
+    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
+    
+}
 
 Ball.prototype.getRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.6;

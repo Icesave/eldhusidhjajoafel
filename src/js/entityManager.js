@@ -107,14 +107,22 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
           halfWidth : 4, halfHeight : 600,
           powerupBullet : this._bulletPowerUp
       }));
-      // reset the bullet powerup
-      if (this._bulletPowerUp == true) {
-          this._bulletPowerUp = false;
-      }
     }
 },
 
+clearPowerUp: function() {
+    this._bulletPowerUp = false;
+
+    for (var i = 0; i< this._balls.length; ++i) {
+        this._balls[i].undoPause();
+    }
+
+    this._maxBullets = 1;
+},
+
 checkPowerUp: function(powerUp, player) {
+    // clear current powerup
+    this.clearPowerUp();
     // player gets an extra life
     if(powerUp.type==1) {
         player.getExtraLife();
@@ -131,6 +139,7 @@ checkPowerUp: function(powerUp, player) {
         this.pauseAllBalls();
     }
 },
+
 
 pauseAllBalls: function() {
     // pause all the balls 

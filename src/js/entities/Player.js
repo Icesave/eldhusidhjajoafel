@@ -83,6 +83,7 @@ Player.prototype.update = function (du) {
 Player.prototype.takeHit = function () {
     lives--;
     RESET = true;
+    entityManager.clearPowerUp();
 };
 
 Player.prototype.getExtraLife = function () {

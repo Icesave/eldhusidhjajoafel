@@ -40,7 +40,7 @@ Bullet.prototype.zappedSound = new Audio(
 Bullet.prototype.rotation = 2.2*Math.PI;
 
 // Convert times from milliseconds to "nominal" time units.
-Bullet.prototype.lifeSpan = 3000 / NOMINAL_UPDATE_INTERVAL;
+Bullet.prototype.lifeSpan = 6000 / NOMINAL_UPDATE_INTERVAL;
 
 Bullet.prototype.update = function (du) {
 
