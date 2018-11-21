@@ -7,7 +7,6 @@
 */
 
 // Start the game
-var START_GAME = 'Y'.charCodeAt(0);
 
 var menu = {
 renderMenu : function() {

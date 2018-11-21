@@ -99,6 +99,11 @@ function render(ctx) {
   // To clear or not to clear 
   if(g_doClear) { 
     util.clearCanvas(ctx);
+    if(g_background != "") {
+        var w = ctx.width,
+            h = ctx.height;
+        ctx.drawImage(g_background, w/2, h/2, w, h);
+    } 
   }
 
   // Box to demonstrate that it is always 
