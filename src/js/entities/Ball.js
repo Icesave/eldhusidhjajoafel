@@ -100,10 +100,10 @@ Ball.prototype.update = function (du) {
             entity.takeHit();
         }
         if(entity instanceof Brick) {
-            if(ball.colliding == "x"){
+            if(ball.colliding == "y"){
                 ball.xVel *= -1;
             } 
-            else if(ball.colliding == "y"){
+            else if(ball.colliding == "x"){
                 ball.yVel = ball.origYVel/2;
                 if(ball.prevY > entity.getPos().y) {
                     ball.yVel *= -1;

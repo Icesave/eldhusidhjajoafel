@@ -193,7 +193,7 @@ update: function(du) {
         this._level = Levels[INDEX];
         RESET = true;
         
-        if(Levels[INDEX] === Levels[Levels.length -1]) {
+        if(Levels[INDEX] === Levels[Levels.length]) {
             gameWin.play();
             GAME_MODE = 3;
             lives = 5;

@@ -76,8 +76,8 @@ var spatialManager = {
         if (distX > (shw + cr)) { return false; }
         if (distY > (shh + cr)) { return false; }
 
-        if (distX <= (shw)) { c1.colliding = "y"; return true; }
-        if (distY <= (shh)) { c1.colliding = "x"; return true; }
+        if (distX <= (shw)) { c1.colliding = "x"; return true; }
+        if (distY <= (shh)) { c1.colliding = "y"; return true; }
 
         return util.square(distX - shw) + util.square(distY - shh) <= util.square(cr);
     },
