@@ -96,7 +96,7 @@ function renderLife(ctx) {
     ctx.fillText(life, 30, 50);
     
     for (var i = 0; i < lives; i++) {
-      fillCircle(ctx, 200 + 30*i, 42, 8);
+        util.fillCircle(ctx, 200 + 30*i, 42, 8);
     }
   }
 

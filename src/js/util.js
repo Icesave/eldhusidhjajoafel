@@ -93,13 +93,12 @@ fillBox: function (ctx, x, y, w, h, style) {
     ctx.fillStyle = style;
     ctx.fillRect(x, y, w, h);
     ctx.fillStyle = oldStyle;
-}
+},
 
-};
-
-function fillCircle(ctx, x, y, r, color) {
+fillCircle: function(ctx, x, y, r, color) {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
 }
+};

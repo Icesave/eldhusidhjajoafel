@@ -73,6 +73,7 @@ Bullet.prototype.update = function (du) {
     entities.forEach(function(entity) {
         if(entity instanceof Brick) { 
             bullet.takeHit();
+            entity.takeHit();
         }
     });
 

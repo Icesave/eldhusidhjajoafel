@@ -60,6 +60,12 @@ Brick.prototype.render = function (ctx) {
              
 };
 
+Brick.prototype.takeHit = function() {
+    if(this.breakable) {
+        this.kill();
+    }
+}
+
 // Geyma?
 
 /* 

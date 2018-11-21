@@ -110,6 +110,7 @@ Entity.prototype.getPos = function () {
   * @return   The radius of the entity
 */
 Entity.prototype.getRadius = function () {
+    console.log("Using getRadius on a entity without radius");
   return 0;
 };
 
@@ -131,4 +132,14 @@ Entity.prototype.getSpatialID = function () {
 */
 Entity.prototype.getSpatialType = function () {
     return this._spatialType;
-  };
+};
+
+Entity.prototype.getSpatialHalfWidth  = function () {
+    console.log("Using getSpatialHalfWidth on a entity without spatial halfwidth");
+    return 0;
+};
+
+Entity.prototype.getSpatialHalfHeight  = function () {
+    console.log("Using getSpatialHalfHeight on a entity without spatial halfheight");
+    return 0;
+};

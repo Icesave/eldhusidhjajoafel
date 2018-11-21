@@ -23,5 +23,6 @@ renderMenu : function() {
   ctx.fillText("Shoot: Press space", 100, 400);
   ctx.fillText("Move player right: Press 'D'", 100, 440);
   ctx.fillText("Move player left: Press 'A'", 100, 480);
-  },
+},
 };
+

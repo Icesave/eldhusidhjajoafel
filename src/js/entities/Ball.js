@@ -28,6 +28,7 @@ function Ball(descr) {
     this.pause = false;
     
     this.rotation = Math.random()*6;
+    this.colliding = "";
 
     this._spatialType = spatialManager.CIRCLE;
 };
@@ -98,8 +99,15 @@ Ball.prototype.update = function (du) {
         if(entity instanceof Player) { 
             entity.takeHit();
         }
-        if(entity instanceof Brick) { 
-            ball.yVel = ball.origYVel/2;
+        if(entity instanceof Brick) {
+            if(ball.colliding == "x"){
+                ball.xVel *= -1;
+            } 
+            else if(ball.colliding == "y"){
+                    ball.yVel = ball.origYVel/2;
+            }
+
+            ball.colliding = "";
         }
     });
 

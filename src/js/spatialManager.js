@@ -76,12 +76,31 @@ var spatialManager = {
         if (distX > (shw + cr)) { return false; }
         if (distY > (shh + cr)) { return false; }
 
-        if (distX <= (shw)) { return true; }
-        if (distY <= (shh)) { return true; }
+        if (distX <= (shw)) { c1.colliding = "y"; return true; }
+        if (distY <= (shh)) { c1.colliding = "x"; return true; }
 
         return util.square(distX - shw) + util.square(distY - shh) <= util.square(cr);
     },
     _collideSquares: function (s1, s2) {
+        
+        var s1topRight  = { x : s1.getPos().posX+s1.getSpatialHalfWidth(), 
+                            y : s1.getPos().posY-s1.getSpatialHalfHeight()},
+            s1bottomLeft= { x : s1.getPos().posX-s1.getSpatialHalfWidth(), 
+                            y : s1.getPos().posY+s1.getSpatialHalfHeight()},
+            s2topRight  = { x : s2.getPos().posX+s2.getSpatialHalfWidth(), 
+                            y : s2.getPos().posY-s2.getSpatialHalfHeight()},
+            s2bottomLeft= { x : s2.getPos().posX-s2.getSpatialHalfWidth(), 
+                            y : s2.getPos().posY+s2.getSpatialHalfHeight()};
+
+        if(s1topRight.y > s2bottomLeft.y || s1bottomLeft.y < s2topRight.y) {
+            return false;
+        }
+        
+        if(s1topRight.x < s2bottomLeft.x || s1bottomLeft.x > s2topRight.x) {
+            return false;
+        }
+
+        return true;
     },
 
     // ==============
