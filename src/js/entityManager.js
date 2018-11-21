@@ -145,9 +145,9 @@ update: function(du) {
     }
 
     if(lives < 0) {
-        INDEX = 0;
         GAME_MODE = 0;
         lives = 5;
+        INDEX = 0;
         this._level = Levels[INDEX];
         RESET = true;
     }

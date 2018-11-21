@@ -86,8 +86,8 @@ var spatialManager = {
         x2 = s2.getPos().posX,
         y1 = s1.getPos().posY,
         y2 = s2.getPos().posY,
-        h1 = s1.getSpatialHalfHeight(),
-        h2 = s2.getSpatialHalfHeight(),
+        h1 = s1.getSpatialHalfHeight()*2,
+        h2 = s2.getSpatialHalfHeight()*2,
         w1 = s1.getSpatialHalfWidth()*2,
         w2 = s2.getSpatialHalfWidth()*2;
 

@@ -61,9 +61,6 @@ Bullet.prototype.update = function (du) {
     if (this.cy < this.halfHeight) {
         return entityManager.KILL_ME_NOW;
     }
-    
-    this.rotation = util.wrapRange(this.rotation,
-                                   0, consts.FULL_CIRCLE);   
 
     var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
     bullet = this; // JavaScript is unable to recognize 'this' in the function below

@@ -28,7 +28,7 @@ var TOGGLE_CLEAR = 'C'.charCodeAt(0);
 var TOGGLE_BOX = 'B'.charCodeAt(0);
 var TOGGLE_UNDO_BOX = 'U'.charCodeAt(0);
 var TOGGLE_FLIPFLOP = 'F'.charCodeAt(0);
-var TOGGLE_RENDER = 'Y'.charCodeAt(0);
+var TOGGLE_RENDER = 'N'.charCodeAt(0);
 
 /* 
   * render(ctx)

@@ -80,6 +80,7 @@ function renderSimulation(ctx) {
     if (GAME_MODE === 1) {
         entityManager.render(ctx);
         renderLife(ctx);
+        console.log("boi");
     }
     if (g_renderSpatialDebug) {
         spatialManager.render(ctx);
