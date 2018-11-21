@@ -188,6 +188,7 @@ resetPlayer: function() {
 
 update: function(du) {
     if(this._balls.length < 1) {
+        levelUp.play();
         INDEX += 1;
         this._level = Levels[INDEX];
         RESET = true;
