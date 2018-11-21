@@ -194,6 +194,7 @@ update: function(du) {
     }
 
     if(lives < 0) {
+        gameOver.play();
         GAME_MODE = 0;
         lives = 5;
         INDEX = 0;
