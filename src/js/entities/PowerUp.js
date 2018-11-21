@@ -61,8 +61,21 @@ PowerUp.prototype.getRadius = function () {
 PowerUp.prototype.render = function (ctx) {
 
     // draw the powerup
-  
-    g_sprites.powerup.drawCentredAt(
+    if(this.type==1) { 
+        this.sprite = g_sprites.lifePu;
+     }
+     if(this.type==2) {
+         this.sprite = g_sprites.bulletPu;
+     }
+     if(this.type==3) {
+         this.sprite = g_sprites.bulletPlusPu;
+     }
+     if(this.type==4) {
+         this.sprite = g_sprites.stopPu;
+     }
+
+
+    this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
 
