@@ -4,6 +4,12 @@
 
 "use strict";
 
+/* 
+  * ÐowerUp.js - Object + browser support
+  * Author: Ólöf Fríða (ofm1)
+  * constructor for powerups
+*/
+
 /* jshint browser: true, devel: true, globalstrict: true */
 
 // A generic contructor which accepts an arbitrary descriptor object
@@ -27,37 +33,29 @@ PowerUp.prototype.update = function (du) {
 
     spatialManager.unregister(this);
 
+    // if powerup dies, kill it
     if (this._isDeadNow) return entityManager.KILL_ME_NOW;
 
-    // falls to the floor
+    // powerup falls down, dies when it hits the "floor"
     if(this.cy <= g_canvas.height){
         this.cy += 4 * du;
     }
     else {
         this.takeHit();
     }
-    
-    // use the right image
-    if(this.type == 1) {
-        this.sprite = g_sprites.playerRight;
-    } 
-    if(this.type == 2) {
-        this.sprite = g_sprites.playerLeft;
-    } 
 
     // (Re-)Register
 
     spatialManager.register(this);
 };
 
+// when the powerup takes a hit 
 PowerUp.prototype.takeHit = function () {
     this.kill();
 };
 
-PowerUp.prototype.getRadius = function () {
-    return 4;
-};
-
+// checks which type the powerup is 
+// and sets the sprite
 PowerUp.prototype.setSprite = function () {
     if(this.type==1) { 
         this.sprite = g_sprites.lifePu;
@@ -73,15 +71,17 @@ PowerUp.prototype.setSprite = function () {
      }
 }
 
+// allow Player.js to get the sprite
 PowerUp.prototype.getSprite = function () {
     return this.sprite;
 }
 
 PowerUp.prototype.render = function (ctx) {
 
-    // draw the powerup
+    // set the sprite
     this.setSprite();
 
+    // draw the falling powerup
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );

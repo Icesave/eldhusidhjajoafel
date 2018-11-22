@@ -125,7 +125,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        // TODO: use another image for player
+        // images
         player   : "imgs/Demon/demonBack.png",
         playerRight : "imgs/Demon/demonSide.png",
         playerLeft : "imgs/Demon/demonLeft.png",

@@ -11,6 +11,12 @@
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 */
 
+/* 
+  * Player.js 
+  * constructor for a player
+*/
+
+
 
 // A generic contructor which accepts an arbitrary descriptor object
 function Player(descr) {
@@ -18,16 +24,19 @@ function Player(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
+    // remember the resets
     this.rememberResets();
     
     // Default sprite, if not otherwise specified
     this.sprite = this.sprite || g_sprites.player;
     
-    // Set normal drawing scale, and warp state off
+    // Set normal drawing scale
     this.scale = 1;
-    this.rotation = 0;
+    // check if player has a life powerup
     this.extraLife = false;
+    // check if player has any powerup
     this.hasPowerUp = false;
+
     this._spatialType = spatialManager.SQUARE;
 };
 
@@ -39,6 +48,7 @@ Player.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
 };
 
+// clear player from powerup
 Player.prototype.clearHasPowerup = function () {
     this.hasPowerUp = false;
 }
@@ -52,14 +62,13 @@ Player.prototype.KEY_FIRE   = keyCode(' ');
 
 Player.prototype.cx = 200;
 Player.prototype.cy = 200;
-
-Player.prototype.numSubSteps = 1;
     
 Player.prototype.update = function (du) {
 
-    // TODO: YOUR STUFF HERE! --- Unregister and check for death
+    //Unregister and check for death
     spatialManager.unregister(this);
 
+    // if player is dead, kill entity
     if (this._isDeadNow) {
         return entityManager.KILL_ME_NOW;
     }
@@ -68,17 +77,21 @@ Player.prototype.update = function (du) {
     // Handle firing
     this.maybeFireBullet();
 
-    var entities = this.findHitEntity();
-    var player = this; // Finds every entity that is colliding with the bullet
     
-
+    var entities = this.findHitEntity();
+    var player = this; // JavaScript is unable to recognize 'this' in the function below
+    
+    // Entities that are colliding with player
     entities.forEach(function(entity) {
       /* if player collides with powerup */
         if(entity instanceof PowerUp) { 
             powerUp.play();
+            // set powerup
             player.powerUp = entity;
             player.hasPowerUp = true;
+            // check which powerup the player gets
             entityManager.checkPowerUp(entity, player);
+            // powerup takehit function
             entity.takeHit();
         }
     });
@@ -87,12 +100,15 @@ Player.prototype.update = function (du) {
     
 };
 
-
+// player loses extra life powerup
 Player.prototype.clearExtraLife = function () {
     this.extraLife = false;
 }
 
+// if the Player takes a hit from a ball
 Player.prototype.takeHit = function () {
+    // if the player has extra life powerup, he loses the powerup
+    // else player looses life.
     if(this.extraLife) {
         this.extraLife = false;
     } else {
@@ -101,9 +117,11 @@ Player.prototype.takeHit = function () {
     takeHit.play();
     RESET = true;
     this.hasPowerUp = false;
+    //clear powerup if any 
     entityManager.clearPowerUp();
 };
 
+// if player gets an extra life powerup
 Player.prototype.getExtraLife = function () {
     this.extraLife = true;
 }
@@ -127,6 +145,7 @@ Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy, this.lives);
 };
 
+// record which powerup the player gets
 Player.prototype.getPowerUp = function () {
     return this.powerUp;
 }
@@ -157,6 +176,7 @@ Player.prototype.updatePlayer = function (du) {
     }
 };
 
+// draw the powerup that the player has on the screen
 Player.prototype.drawPowerUp = function (ctx) {
    var sprite = this.powerUp.getSprite();
    sprite.drawCentredAt(
@@ -179,6 +199,7 @@ Player.prototype.render = function (ctx) {
         this.drawPowerUp(ctx);
     }
     
+    // draw the player
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );

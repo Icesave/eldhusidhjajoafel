@@ -35,20 +35,24 @@ function Ball(descr) {
 
 Ball.prototype = new Entity();
 
-
+// lifespan for the paused balls
+// the balls are paused for 4 secounds if player gets "pause ball" powerup
 Ball.prototype.pauseLifespan = 4000 / NOMINAL_UPDATE_INTERVAL;
 var NOMINAL_GRAVITY = 0.12;
 Ball.prototype.update = function (du) {
     
     spatialManager.unregister(this);
 
+    // if the ball is paused then count down
     if(this.pause){
         this.pauseLifespan -= du; 
     }
 
+    // when the pauseLifespan is < 0
+    // the balls move again and pauselifespan is back to 4 sec
     if(this.pauseLifespan<0) {
         this.pause = false;
-        this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL;
+        this.pauseLifespan =  4000 / NOMINAL_UPDATE_INTERVAL;
     }
     
     var prevX = this.cx;
@@ -65,6 +69,7 @@ Ball.prototype.update = function (du) {
     if (this._isDeadNow) {
         return entityManager.KILL_ME_NOW;
     }
+    // The ball only moves while it is not in pause mode
     if (!this.pause){
         var r = this.getRadius();
         // Bounce off top, bottom and side edges
@@ -122,9 +127,10 @@ Ball.prototype.update = function (du) {
     spatialManager.register(this);
 };
 
+// the balls can move again
 Ball.prototype.undoPause= function (){
     this.pause=false;
-    this.pauseLifespan =  3000 / NOMINAL_UPDATE_INTERVAL
+    this.pauseLifespan =  4000 / NOMINAL_UPDATE_INTERVAL
     
 }
 
@@ -132,6 +138,7 @@ Ball.prototype.getRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.6;
 };
 
+// set the pause mode to true, balls can not move
 Ball.prototype.setPause = function () {
     this.pause = true;
 }
