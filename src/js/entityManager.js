@@ -112,20 +112,25 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
     }
 },
 
+// sets the haspowerup boolean to false
 clearPlayerPowerup: function() {
     this._player[0].clearHasPowerup();
 },
 
+// clear powerup
 clearPowerUp: function() {
-    
+    // bullet will not stick
     this._bulletPowerUp = false;
 
+    // all the balls can move
     for (var i = 0; i< this._balls.length; ++i) {
         this._balls[i].undoPause();
     }
 
+    // clear extra life
     this._player[0].clearExtraLife();
     
+    // player can only shoot one bullet at the time
     this._maxBullets = 1;
 },
 
@@ -144,12 +149,13 @@ checkPowerUp: function(powerUp, player) {
     if (powerUp.type==3) {
         this.setMaxBullets(2);
     }
+    // "freeze" the balls 
     if (powerUp.type==4) {
         this.pauseAllBalls();
     }
 },
 
-
+// the balls ore frozen and can not move
 pauseAllBalls: function() {
     // pause all the balls 
     for (var i = 0; i< this._balls.length; ++i) {
@@ -157,6 +163,7 @@ pauseAllBalls: function() {
     }
 },
 
+// generate a new random powerup
 generatePowerUp : function(cx, cy) {
     this._powerups.push(new PowerUp({
         cx : cx,
@@ -165,6 +172,7 @@ generatePowerUp : function(cx, cy) {
     }));
 },
 
+// set the max bullets a player can shoot
 setMaxBullets: function(num){
     this._maxBullets = num;
 },
