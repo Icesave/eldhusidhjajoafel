@@ -15,9 +15,16 @@ var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 var g_background = new Image;
 
-//GAME MODE 0 = menu, 1 = play game
+
+
+ // GAME_MODE = 0 : menu,
+ // GAME_MODE = 1 : play game,
+ // GAME_MODE = 2 : game over,
+ // GAME_MODE = 3 : game won
 var GAME_MODE = 0;
 
+
+// Player's extra lives
 var lives = 5;
 
 

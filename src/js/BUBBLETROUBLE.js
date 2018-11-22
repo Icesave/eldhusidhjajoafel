@@ -78,19 +78,23 @@ function processDiagnostics() {
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
+    // Render main menu 
     if (GAME_MODE === 0) {
         gameSong.pause();
         menu.renderMenu();
     }
+    // Render game and play game song
     if (GAME_MODE === 1) {
         gameSong.play();
         entityManager.render(ctx);
         renderLife(ctx);
     }
+    // Render game over menu 
     if (GAME_MODE === 2) {
         gameSong.pause();
         menu.renderGameOverMenu();
     }
+    // Render game won menu
     if (GAME_MODE === 3) {
         gameSong.pause();
         menu.renderGameWinMenu();

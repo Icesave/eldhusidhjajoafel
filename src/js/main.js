@@ -54,6 +54,7 @@ var main = {
     update(dt);
     render(g_ctx);
 
+    //Switch to play game mode when 'Y' is pressed
     if (eatKey(START_GAME)) {
       GAME_MODE = 1;
     }

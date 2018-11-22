@@ -1,14 +1,16 @@
 "use strict";
 
-/* 
+/**
   * menu.js
   * Author: Freyja (frs24) 
   * The menu of the game
 */
-
-// Start the game
-
 var menu = {
+
+  /**
+   * renderMenu()
+   * Render the main menu at the start of game
+   */
 renderMenu : function() {
   util.fillBox(ctx,0,0,1000,600,"#808080");
   ctx.drawImage(g_images.menuBg, 0, 0);
@@ -27,6 +29,10 @@ renderMenu : function() {
   ctx.fillText("Move player left: Press 'A'", 100, 480);
   },
 
+  /**
+   * renderGameOverMenu()
+   * Render the game over menu when player has lost the game 
+   */
   renderGameOverMenu : function() {
     util.fillBox(ctx,0,0,1000,600,"#808080");
     ctx.drawImage(g_images.menuBg, 0, 0);
@@ -45,6 +51,10 @@ renderMenu : function() {
     ctx.fillText("Move player left: Press 'A'", 100, 480);
     },
 
+    /**
+     * renderGameWinMenu()
+     * Render the game won menu when player has won the game
+     */
     renderGameWinMenu : function() {
       util.fillBox(ctx,0,0,1000,600,"#808080");
       ctx.drawImage(g_images.menuBg, 0, 0);

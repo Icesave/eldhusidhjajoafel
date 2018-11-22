@@ -187,12 +187,16 @@ resetPlayer: function() {
 
 
 update: function(du) {
+    // If no balls are left => play levelUp sound and switch to next level
     if(this._balls.length < 1) {
         levelUp.play();
         INDEX += 1;
         this._level = Levels[INDEX];
         RESET = true;
         
+        // If no balls and no more levels are left (game won) => play
+        // gameWin sound, switch to game won menu, reset lives and 
+        // reset levels
         if(Levels[INDEX] === Levels[Levels.length]) {
             gameWin.play();
             GAME_MODE = 3;
@@ -203,6 +207,8 @@ update: function(du) {
         }
     }
 
+    // If player has no lives left => switch to game over mode, 
+    // play game over sound, reset lives and reset levels
     if(lives < 0) {
         gameOver.play();
         GAME_MODE = 2;
