@@ -95,7 +95,7 @@ function processDiagnostics() {
             console.log("B = Toggle back box - Double buffer box");
             console.log("U = Toggle undo box - Double buffer box");
             console.log("F = Flipity flop boxes");
-            console.log("Y = Toggle rendering");
+            console.log("N = Toggle rendering");
 
             console.log("P = Pause the game");
             console.log("O = Step one step");
