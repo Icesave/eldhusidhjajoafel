@@ -1,4 +1,12 @@
-// Multi-Image Preloader
+// ==============
+// Images Preload
+// ==============
+
+/* 
+  * imagesPreload.js - Multi-Image Preloader
+  * Author: Sigríður (sos42) - But mostly copied from previous projects
+  * 
+*/
 
 "use strict";
 

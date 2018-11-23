@@ -2,6 +2,13 @@
 // SPRITE STUFF
 // ============
 
+/* 
+  * Sprite.js - Entity Object
+  * Author: Sigríður (sos42) - Functions taken from previous project
+  * Sprites registered and drawn
+  * 
+*/
+
 "use strict";
 
 /* jshint browser: true, devel: true, globalstrict: true */
