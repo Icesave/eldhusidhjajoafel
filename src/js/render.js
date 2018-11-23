@@ -22,10 +22,6 @@ var g_frameCounter = 1;
 
 var INFO = keyCode('I'); 
 var KILL = keyCode('K');
-var PU_EXLIFE = keyCode('1');
-var PU_STICKYFORK = keyCode('2');
-var PU_DOUBLEFORK = keyCode('3');
-var PU_PAUSEBALLS = keyCode('4');
 
 var TOGGLE_DEBUGMODE = keyCode('M');
 var TOGGLE_CLEAR = keyCode('C');
@@ -100,20 +96,6 @@ function render(ctx) {
       }
       console.log("---------------------------");
     }
-    var testpu = new PowerUp();
-    if(eatKey(PU_EXLIFE)) {
-        testpu.type = 1;
-    }
-    if(eatKey(PU_STICKYFORK)) {
-        testpu.type = 2;
-    }
-    if(eatKey(PU_DOUBLEFORK)) {
-        testpu.type = 3;
-    }
-    if(eatKey(PU_PAUSEBALLS)) {
-        testpu.type = 4;
-    }
-    entityManager.checkPowerUp(testpu, entityManager._player[0]);
   }
 
   // To clear or not to clear 

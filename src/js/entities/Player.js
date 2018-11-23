@@ -124,8 +124,11 @@ Player.prototype.takeHit = function () {
 // if player gets an extra life powerup
 Player.prototype.getExtraLife = function () {
     this.extraLife = true;
-}
+};
 
+Player.prototype.getRadius = function() {
+    return this.sprite.width;
+};
 
 Player.prototype.maybeFireBullet = function () {
     if(eatKey(this.KEY_FIRE)) {

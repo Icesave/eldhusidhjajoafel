@@ -27,16 +27,16 @@ function Entity() {
 */
 Entity.prototype.setup = function (descr) {
 
-  // Apply all setup properies from the (optional) descriptor
-  for (var property in descr) {
-    this[property] = descr[property];
-  }
+    // Apply all setup properies from the (optional) descriptor
+    for (var property in descr) {
+        this[property] = descr[property];
+    }
 
-  // Get my (unique) spatial ID
-  this._spatialID = spatialManager.getNewSpatialID();
+    // Get my (unique) spatial ID
+    this._spatialID = spatialManager.getNewSpatialID();
 
-  // I am not dead yet!
-  this._isDeadNow = false;
+    // I am not dead yet!
+    this._isDeadNow = false;
 };
 
 
@@ -49,7 +49,7 @@ Entity.prototype.setup = function (descr) {
   * Marks this entity as dead  
 */
 Entity.prototype.kill = function () {
-  this._isDeadNow = true;
+    this._isDeadNow = true;
 };
 
 /* 
@@ -59,7 +59,7 @@ Entity.prototype.kill = function () {
   * @return   List of all entities that are colliding with this enity
 */
 Entity.prototype.findHitEntity = function () {
-  return spatialManager.findEntityInRange(this);
+    return spatialManager.findEntityInRange(this);
 };
 
 /* 
@@ -69,7 +69,7 @@ Entity.prototype.findHitEntity = function () {
   * @return   If the entity is colliding with another entity or not  
 */
 Entity.prototype.isColliding = function () {
-  return this.findHitEntity();
+    return this.findHitEntity();
 };
 
 
@@ -85,8 +85,8 @@ Entity.prototype.isColliding = function () {
   * @param  cy  The y coord
 */
 Entity.prototype.setPos = function (cx, cy) {
-  this.cx = cx;
-  this.cy = cy;
+    this.cx = cx;
+    this.cy = cy;
 };
 
 // =======
@@ -100,18 +100,7 @@ Entity.prototype.setPos = function (cx, cy) {
   * @return   The position as a list
 */
 Entity.prototype.getPos = function () {
-  return { posX: this.cx, posY: this.cy };
-};
-
-/* 
-  * getRadius()
-  * Get the radius of the entity and returns it
-  * 
-  * @return   The radius of the entity
-*/
-Entity.prototype.getRadius = function () {
-    console.log("Using getRadius on a entity without radius");
-  return 0;
+    return { posX: this.cx, posY: this.cy };
 };
 
 /* 
@@ -121,7 +110,7 @@ Entity.prototype.getRadius = function () {
   * @return   The spatial ID of the entity
 */
 Entity.prototype.getSpatialID = function () {
-  return this._spatialID;
+    return this._spatialID;
 };
 
 /* 
@@ -134,12 +123,20 @@ Entity.prototype.getSpatialType = function () {
     return this._spatialType;
 };
 
-Entity.prototype.getSpatialHalfWidth  = function () {
-    console.log("Using getSpatialHalfWidth on a entity without spatial halfwidth");
+Entity.prototype.getSpatialHalfWidth = function () {
     return 0;
 };
 
-Entity.prototype.getSpatialHalfHeight  = function () {
-    console.log("Using getSpatialHalfHeight on a entity without spatial halfheight");
+Entity.prototype.getSpatialHalfHeight = function () {
+    return 0;
+};
+
+/* 
+  * getSpatialRadius()
+  * Get the radius of the entity and returns it
+  * 
+  * @return   The radius of the entity
+*/
+Entity.prototype.getSpatialRadius = function () {
     return 0;
 };

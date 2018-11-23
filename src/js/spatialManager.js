@@ -55,8 +55,8 @@ var spatialManager = {
             x2 = c2.getPos().posX,
             y1 = c1.getPos().posY,
             y2 = c2.getPos().posY,
-            r1 = c1.getRadius(),
-            r2 = c2.getRadius();
+            r1 = c1.getSpatialRadius(),
+            r2 = c2.getSpatialRadius();
 
         // Equation to calculate if 2 entities are colliding
         return util.square(x2 - x1) + util.square(y1 - y2) <= util.square(r1 + r2);
@@ -66,7 +66,7 @@ var spatialManager = {
             sx = s1.getPos().posX,
             cy = c1.getPos().posY,
             sy = s1.getPos().posY,
-            cr = c1.getRadius(),
+            cr = c1.getSpatialRadius(),
             shw = s1.getSpatialHalfWidth(),
             shh = s1.getSpatialHalfHeight();
 
@@ -76,8 +76,8 @@ var spatialManager = {
         if (distX > (shw + cr)) { return false; }
         if (distY > (shh + cr)) { return false; }
 
-        if (distX <= (shw)) { c1.colliding = "x"; return true; }
-        if (distY <= (shh)) { c1.colliding = "y"; return true; }
+        if (distX <= (shw)) { c1.colliding = "y"; return true; }
+        if (distY <= (shh)) { c1.colliding = "x"; return true; }
 
         return util.square(distX - shw) + util.square(distY - shh) <= util.square(cr);
     },
@@ -205,7 +205,7 @@ var spatialManager = {
 
             if (e.getSpatialType() == spatialManager.CIRCLE) {
                 ctx.strokeStyle = "red";
-                util.strokeCircle(ctx, e.getPos().posX, e.getPos().posY, e.getRadius());
+                util.strokeCircle(ctx, e.getPos().posX, e.getPos().posY, e.getSpatialRadius());
             }
             else if (e.getSpatialType() == spatialManager.SQUARE) {
                 ctx.strokeStyle = "blue";

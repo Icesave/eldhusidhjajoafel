@@ -71,7 +71,7 @@ Ball.prototype.update = function (du) {
     }
     // The ball only moves while it is not in pause mode
     if (!this.pause){
-        var r = this.getRadius();
+        var r = this.getSpatialRadius();
         // Bounce off top, bottom and side edges
         if(this.nextY < r) {
             this.yVel *= -1;
@@ -93,7 +93,6 @@ Ball.prototype.update = function (du) {
 
     var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
     ball = this; // JavaScript is unable to recognize 'this' in the function below
-
     entities.forEach(function(entity) {
       /* What to do if the bullet is colliding with a rock or another bullet */
         if(entity instanceof Bullet) {
@@ -105,19 +104,24 @@ Ball.prototype.update = function (du) {
             entity.takeHit();
         }
         if(entity instanceof Brick) {
-            if(ball.colliding == "y"){
-                ball.xVel *= -1;
+            var x = entity.getPos().posX,
+                y = entity.getPos().posY;
+            if(ball.colliding == "x" || ball.colliding == ""){
+                if(prevX < x && ball.xVel > 0) {
+                    ball.xVel *= -1;
+                }
+                else if(prevY > x && ball.xVel < 0) {
+                    ball.xVel *= -1;
+                }
             } 
-            else if(ball.colliding == "x"){
-                ball.yVel = ball.origYVel/2;
-                if(ball.prevY > entity.getPos().y) {
+            if(ball.colliding == "y" || ball.colliding == "") {
+                if(prevY < y) {
+                    ball.yVel = ball.origYVel/2;
+                }
+                else if(prevY > y && ball.yVel < 0) {
                     ball.yVel *= -1;
                 }
             }
-            else{
-                ball.yVel *= -1;
-                ball.xVel *= -1;
-            } 
 
             ball.colliding = "";
         }
@@ -134,7 +138,7 @@ Ball.prototype.undoPause= function (){
     
 }
 
-Ball.prototype.getRadius = function () {
+Ball.prototype.getSpatialRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.6;
 };
 

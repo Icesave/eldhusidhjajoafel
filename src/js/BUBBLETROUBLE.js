@@ -28,18 +28,29 @@ var g_ctx = g_canvas.getContext("2d");
 // GAME-SPECIFIC UPDATE LOGIC
 
 var RESET = false;
+var LEVEL1 = keyCode('1');
+var LEVEL2 = keyCode('2');
+var LEVEL3 = keyCode('3');
+var LEVEL4 = keyCode('4');
+var LEVEL5 = keyCode('5');
 
 function updateSimulation(du) {
     if(GAME_MODE === 1) {
         processDiagnostics();
         entityManager.update(du);
+        if(eatKey(LEVEL1)) { RESET = true; INDEX = 0; };
+        if(eatKey(LEVEL2)) { RESET = true; INDEX = 1; };
+        if(eatKey(LEVEL3)) { RESET = true; INDEX = 2; };
+        if(eatKey(LEVEL4)) { RESET = true; INDEX = 3; };
+        if(eatKey(LEVEL5)) { RESET = true; INDEX = 4; };
+        entityManager._level = Levels[INDEX];
         util.setBackground(Levels[INDEX]["background"]);
         if(RESET) {
             entityManager.reset();
             spatialManager.reset();
             RESET = false;
         }
-    }    
+    }   
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
