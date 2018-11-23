@@ -2,4 +2,4 @@
 
 Vóh-vóh
 
-![alt text](https://github.com/Icesave/eldhusidhjajoafel/tree/master/src/imgs/bubbleboi.png)
+![alt text](src/imgs/bubbleboi.png?raw=true "Title")
