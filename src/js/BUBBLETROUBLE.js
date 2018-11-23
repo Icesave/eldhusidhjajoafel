@@ -3,7 +3,7 @@
 // =========
 /*
 
-   TODO:  LÝSING Á LEIKNUM.
+   Look at README.md for info about the game.
 
 
 */
@@ -99,7 +99,6 @@ function processDiagnostics() {
 
             console.log("P = Pause the game");
             console.log("O = Step one step");
-
             
 
             console.log("---------------------------");

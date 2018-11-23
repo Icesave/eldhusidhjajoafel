@@ -9,8 +9,7 @@ To win you need to blow up these guys:
 ![alt text](src/imgs/bubbleboi.png?raw=true "Bad guy")  
 
 To blow them up you need to hit them with your pitchfork.  
-*But watch out!*  
-When they blow up, smaller ones come out.  
+*But watch out!* when they blow up, smaller ones come out.  
 There are 5 levels and have increasing difficulty.
 Also, you can only shoot your pitchforks one at time.
 
