@@ -9,21 +9,33 @@ To win you need to blow up these guys:
 ![alt text](src/imgs/bubbleboi.png?raw=true "Bad guy")  
 
 To blow them up you need to hit them with your pitchfork.  
-**But watch out!**  
-When they blow up, smaller ones come out.
-
+*But watch out!*  
+When they blow up, smaller ones come out.  
 There are 5 levels and have increasing difficulty.
 
 
+## Power ups: 
+There are four power ups to help you,
+but you can only have one activated at any time.
 
+1. Protect life - This one protect you form losing a life if you die  
+![alt text](src/imgs/PowerUps/HeartPu.png?raw=true)  
 
+2. 
+![alt text](src/imgs/PowerUps/BulletPu.png?raw=true)  
+
+3. 
+![alt text](src/imgs/PowerUps/PulletPlusPu.png?raw=true)  
+
+4. 
+![alt text](src/imgs/PowerUps/StopPu.png?raw=true)  
 
 
 ## Controls:
 **D**: Move right  
 **A**: Move left  
 **SPACEBAR**: Shoot a pitchfork  
-**Y**: Start the game
+**Y**: Start the game  
 **Q** : Quit the game  
 
 
