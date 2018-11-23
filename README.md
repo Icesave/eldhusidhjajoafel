@@ -8,14 +8,14 @@ You play as this guy:
 To win you need to blow up these guys:  
 ![alt text](src/imgs/bubbleboi.png?raw=true "Bad guy")  
 
-To blow them up you need to hit them with your pitchfork.  
+To blow them up you need to hit them with your pitchforks.  
 *But watch out!* when they blow up, smaller ones come out.  
 There are 5 levels and have increasing difficulty.
 Also, you can only shoot your pitchforks one at time.
 
 
 ## Power ups: 
-There are four power ups to help you,
+There are four power ups to help you
 but you can only have one activated at any time.
 
 1. Protect life - This one protect you form losing a life if you die  
