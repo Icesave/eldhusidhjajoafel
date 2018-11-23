@@ -20,31 +20,32 @@ There are 5 levels and have increasing difficulty.
 
 
 ## Controls:
-Move right: **D**  
-Move left: **A**  
-Shoot a pitchfork: **SPACEBAR**  
+**D**: Move right  
+**A**: Move left  
+**SPACEBAR**: Shoot a pitchfork  
+**Y**: Start the game
+**Q** : Quit the game  
 
 
 ## Debug Mode:
 To activate debug mode you press M,
 from there you can press the following:
 
-**M** = Toggle debug mode  
-**1** = Set the current level to 1  
-**2** = Set the current level to 2  
-**3** = Set the current level to 3  
-**4** = Set the current level to 4  
-**5** = Set the current level to 5  
-**R** = Reset the level  
-**X** = Render the collision forms  
-**I** = See info about all the current entities  
-**K** = Destroy a ball  
-**T** = Toggle timer  
-**Q** = Quit the game  
-**C** = Toggle clear canvas before each render  
-**B** = Toggle back box - Double buffer box  
-**U** = Toggle undo box - Double buffer box  
-**F** = Flipity flop boxes  
-**N** = Toggle rendering  
-**P** = Pause the game  
-**O** = Step one step  
+**M**: Toggle debug mode  
+**1**: Set the current level to 1  
+**2**: Set the current level to 2  
+**3**: Set the current level to 3  
+**4**: Set the current level to 4  
+**5**: Set the current level to 5  
+**R**: Reset the level  
+**X**: Render the collision forms  
+**I**: See info about all the current entities  
+**K**: Destroy a ball  
+**T**: Toggle timer  
+**C**: Toggle clear canvas before each render  
+**B**: Toggle back box - Double buffer box  
+**U**: Toggle undo box - Double buffer box  
+**F**: Flipity flop boxes  
+**N**: Toggle rendering  
+**P**: Pause the game  
+**O**: Step one step  
