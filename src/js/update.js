@@ -56,42 +56,9 @@ function update(dt) {
 var KEY_PAUSE = keyCode('P');
 var KEY_STEP = keyCode('O');
 
-var TOGGLE_DEBUGMODE = keyCode('M');
-
-var INFO = keyCode('I');
-var KILL = keyCode('K');
-
-
 var g_isUpdatePaused = false;
 
 function shouldSkipUpdate() {
-    // Process various option toggles
-    if (eatKey(TOGGLE_DEBUGMODE)) {
-        g_debugMode = !g_debugMode;
-        if (g_debugMode) {
-            console.log("===========================");
-            console.log("DEBUG MODE - " + g_debugMode);
-            console.log("T = Toggle timer");
-            console.log("Q = Quit the game");
-
-            console.log("I = See info about all the current entities");
-            console.log("K = Destroy a ball");
-            console.log("C = Toggle clear canvas before each render");
-            console.log("B = Toggle back box - Double buffer box");
-            console.log("U = Toggle undo box - Double buffer box");
-            console.log("F = Flipity flop boxes");
-            console.log("Y = Toggle rendering");
-
-            console.log("P = Pause the game");
-            console.log("O = Step one step");
-
-            console.log("X = Toggle collision circle");
-            console.log("H = Halt the game");
-            console.log("R = Restart the game");
-
-            console.log("---------------------------");
-        }
-    }
     if (eatKey(KEY_PAUSE) && g_debugMode) {
         g_isUpdatePaused = !g_isUpdatePaused;
     }

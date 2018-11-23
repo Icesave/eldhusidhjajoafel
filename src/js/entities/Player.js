@@ -126,24 +126,29 @@ Player.prototype.getExtraLife = function () {
     this.extraLife = true;
 };
 
-Player.prototype.getRadius = function() {
-    return this.sprite.width;
-};
-
+// hanlder for when the player presses the shoot button
 Player.prototype.maybeFireBullet = function () {
     if(eatKey(this.KEY_FIRE)) {
         entityManager.fireBullet(this.cx, this.cy-this.getRadius());
     }
 };
 
+// get the half width for the spatial manager
 Player.prototype.getSpatialHalfWidth  = function () {
     return 30;
 };
 
+// get the half height for the spatial manager
 Player.prototype.getSpatialHalfHeight  = function () {
     return 40;
 };
 
+// get radius of the sprite
+Player.prototype.getRadius  = function () {
+    return this.sprite.width;
+};
+
+// reset the player to orignal pos
 Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy, this.lives);
 };
@@ -153,29 +158,29 @@ Player.prototype.getPowerUp = function () {
     return this.powerUp;
 }
 
-
+// update the movement of the player 
 Player.prototype.updatePlayer = function (du) {
     var haltflag = true;
-    if (keys[this.KEY_LEFT]) {
+    if (keys[this.KEY_LEFT]) { // going left
         haltflag = false;
         if (this.cx == 30) {
             this.cx = this.cx;
         } else {
             this.cx -= 5;
         }
-        this.sprite = g_sprites.playerLeft;
+        this.sprite = g_sprites.playerLeft; // the left sprite
     }
-    if (keys[this.KEY_RIGHT]) {
+    if (keys[this.KEY_RIGHT]) { // going right
         haltflag = false;
         if (this.cx == g_canvas.width-30) {
             this.cx = this.cx;
         } else {
             this.cx += 5;
         }
-        this.sprite = g_sprites.playerRight;
+        this.sprite = g_sprites.playerRight; // the right sprite
     }
     if(haltflag) {
-      this.sprite = g_sprites.player;
+      this.sprite = g_sprites.player; // if halted the halted sprite
     }
 };
 

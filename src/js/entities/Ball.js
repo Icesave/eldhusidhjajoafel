@@ -28,7 +28,7 @@ function Ball(descr) {
     this.pause = false;
     
     this.rotation = Math.random()*6;
-    this.colliding = "";
+    this.colliding = ""; // which axis a entity is colliding with the ball
 
     this._spatialType = spatialManager.CIRCLE;
 };
@@ -94,29 +94,37 @@ Ball.prototype.update = function (du) {
     var entities = this.findHitEntity(), // Finds every entity that is colliding with the bullet
     ball = this; // JavaScript is unable to recognize 'this' in the function below
     entities.forEach(function(entity) {
-      /* What to do if the bullet is colliding with a rock or another bullet */
+        /* collision with a bullet */
         if(entity instanceof Bullet) {
             entity.takeHit();
             ball.takeHit();
             return entityManager.KILL_ME_NOW;
         }
+
+        /* collision with a player */
         if(entity instanceof Player) { 
             entity.takeHit();
         }
+
+        /* collision with a brick*/
         if(entity instanceof Brick) {
             var x = entity.getPos().posX,
                 y = entity.getPos().posY;
+
+            // The ball is colliding x side with a brick
             if(ball.colliding == "x" || ball.colliding == ""){
-                if( (prevX < x && ball.xVel > 0) || 
-                    (prevX > x && ball.xVel < 0)) {
+                if( (prevX < x && ball.xVel > 0) || // left side of the brick
+                    (prevX > x && ball.xVel < 0)) { // right side of the brick
                     ball.xVel *= -1;
                 }
             } 
+            
+            // The ball is colliding y side with a brick
             if(ball.colliding == "y" || ball.colliding == "") {
-                if(prevY < y) {
+                if(prevY < y) { // top side of the brick
                     ball.yVel = ball.origYVel/2;
                 }
-                else if(prevY > y && ball.yVel < 0) {
+                else if(prevY > y && ball.yVel < 0) { // bottom side of the brick
                     ball.yVel *= -1;
                 }
             }
@@ -156,13 +164,14 @@ Ball.prototype.takeHit = function () {
         entityManager.generatePowerUp(this.cx, this.cy);
     }
     
+    // split the ball into 2 if it is big enough
     if (this.scale > 0.125) {
         this._spawnFragment(1, this.origYVel+1);
         this._spawnFragment(-1, this.origYVel+1);
-    } else {
     }
 };
 
+// Generate smaller balls
 Ball.prototype._spawnFragment = function(xVel, yVel) {
     entityManager.generateBall({
         cx : this.cx,
@@ -173,6 +182,7 @@ Ball.prototype._spawnFragment = function(xVel, yVel) {
     });
 };
 
+// Render the ball
 Ball.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing

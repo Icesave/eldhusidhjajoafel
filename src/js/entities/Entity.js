@@ -123,17 +123,29 @@ Entity.prototype.getSpatialType = function () {
     return this._spatialType;
 };
 
+/* 
+  * SpatialHalfWidth()
+  * Get the spatial half width of the entity and returns it
+  * 
+  * @return   The half width of the entity
+*/
 Entity.prototype.getSpatialHalfWidth = function () {
     return 0;
 };
 
+/* 
+  * getSpatialHalfHeight()
+  * Get the spatial half height of the entity and returns it
+  * 
+  * @return   The half height of the entity
+*/
 Entity.prototype.getSpatialHalfHeight = function () {
     return 0;
 };
 
 /* 
   * getSpatialRadius()
-  * Get the radius of the entity and returns it
+  * Get the spatial radius of the entity and returns it
   * 
   * @return   The radius of the entity
 */

@@ -50,20 +50,6 @@ function render(ctx) {
     if(eatKey(TOGGLE_RENDER)) {
       g_doRender = !g_doRender;
     }
-    if(eatKey(INFO)) {
-      console.log("DEBUG: All Entities");
-      entityManager.allEntities().forEach(function(entity) {
-        console.dir(entity);
-      });
-      console.log("---------------------------");
-    }
-    if(eatKey(KILL)) {
-      console.log("DEBUG: Kill ball");
-      if(entityManager._balls.length > 0) {
-        entityManager._balls[0].takeHit();
-      }
-      console.log("---------------------------");
-    }
   }
 
   // To clear or not to clear 

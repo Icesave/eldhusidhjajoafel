@@ -9,10 +9,14 @@
   * handleMouse.js
   * Author: Elvar (eas20) - But most copied from Pat 
   * Mouse handling
+  * We did not use any mouse handling in the final product
+  * but it still good to the this file if we dicide to use it 
 */
 
+/*
 var g_mouseX = 0,
     g_mouseY = 0;
+*/
 
 /* 
   * handleMouse(evt)
@@ -20,6 +24,7 @@ var g_mouseX = 0,
   * 
   * @param  evt   The event
 */
+/*
 function handleMouse(evt) {
 
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
@@ -34,4 +39,5 @@ function handleMouse(evt) {
 
 // Handle "down" and "move" events the same way.
 window.addEventListener("mousedown", handleMouse);
-window.addEventListener("mousemove", handleMouse);
+window.addEventListener("mousemove", handleMouse); 
+*/

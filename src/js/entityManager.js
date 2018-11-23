@@ -70,6 +70,7 @@ init: function() {
     this.set();
 },
 
+// clear and resets the entity manager
 reset: function() { 
     this._player[0].reset();
     this._bullets.length = 0;
@@ -82,6 +83,7 @@ reset: function() {
     this.set();
 },
 
+// set the entity manager
 set: function() {
     this._level.balls.forEach(function(e) {
         entityManager.generateBall({
@@ -102,8 +104,9 @@ set: function() {
     });
 },
 
-fireBullet: function(cx, cy, velX, velY, rotation) {
-    if(this._bullets.length < this._maxBullets) {
+// generate a bullet
+fireBullet: function(cx, cy) {
+    if(this._bullets.length < this._maxBullets) { // check if bullet is already out
           this._bullets.push(new Bullet({
           cx : cx, cy : cy + 600,
           halfWidth : 4, halfHeight : 600,
@@ -248,9 +251,6 @@ update: function(du) {
 },
 
 render: function(ctx) {
-
-    var debugX = 10, debugY = 100;
-
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
@@ -262,7 +262,6 @@ render: function(ctx) {
             //debug.text(".", debugX + i * 10, debugY);
 
         }
-        debugY += 10;
     }
 },
 

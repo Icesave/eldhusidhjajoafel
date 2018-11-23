@@ -8,36 +8,6 @@
 
 var util = {
 
-
-// RANGES
-// ======
-
-clampRange: function(value, lowBound, highBound) {
-    if (value < lowBound) {
-	value = lowBound;
-    } else if (value > highBound) {
-	value = highBound;
-    }
-    return value;
-},
-
-wrapRange: function(value, lowBound, highBound) {
-    while (value < lowBound) {
-	value += (highBound - lowBound);
-    }
-    while (value > highBound) {
-	value -= (highBound - lowBound);
-    }
-    return value;
-},
-
-isBetween: function(value, lowBound, highBound) {
-    if (value < lowBound) { return false; }
-    if (value > highBound) { return false; }
-    return true;
-},
-
-
 // RANDOMNESS
 // ==========
 
@@ -52,15 +22,6 @@ randRange: function(min, max) {
 square: function(x) {
     return x*x;
 },
-
-
-// DISTANCES
-// =========
-
-distSq: function(x1, y1, x2, y2) {
-    return this.square(x2-x1) + this.square(y2-y1);
-},
-
 
 // CANVAS OPS
 // ==========

@@ -21,17 +21,18 @@ function Brick(descr) {
 }
 
 Brick.prototype = new Entity();
-// Add these properties to the prototype, where they will serve as
-// shared defaults, in the absence of an instance-specific overrides.
 
+// get the halfwidth for the spatialmanager
 Brick.prototype.getSpatialHalfWidth  = function () {
     return this.spatialHalfWidth;
 };
 
+// get the halfheight for the spatialmanager
 Brick.prototype.getSpatialHalfHeight  = function () {
     return this.spatialHalfHeight;
 };
 
+// update the brick
 Brick.prototype.update = function () {
     spatialManager.unregister(this);
 
@@ -40,6 +41,7 @@ Brick.prototype.update = function () {
     spatialManager.register(this);
 };
 
+// render the brick
 Brick.prototype.render = function (ctx) {
     ctx.save();
     ctx.fillStyle = this.fillStyle;
@@ -58,8 +60,9 @@ Brick.prototype.render = function (ctx) {
              
 };
 
+// handler for when the brick takes a hit
 Brick.prototype.takeHit = function() {
-    if(this.breakable) {
+    if(this.breakable) { // Only kill brick if 'killable'
         this.kill();
     }
 }

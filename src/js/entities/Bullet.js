@@ -15,17 +15,19 @@ function Bullet(descr) {
     // Make a noise when I am created (i.e. fired)
     this.fireSound.play();
 
-    this._spatialType = spatialManager.SQUARE;
+    this._spatialType = spatialManager.SQUARE; 
     this.spatialHalfWidth = this.halfWidth;
     this.spatialHalfHeight = this.halfHeight;
 }
 
 Bullet.prototype = new Entity();
 
+// get the half width for the spatial manager
 Bullet.prototype.getSpatialHalfWidth  = function () {
     return this.spatialHalfWidth;
 };
 
+// get the half height for the spatial manager
 Bullet.prototype.getSpatialHalfHeight  = function () {
     return this.spatialHalfHeight;
 };
@@ -58,6 +60,7 @@ Bullet.prototype.update = function (du) {
         this.cy -= 10 * du;
     }
 
+    // If the bullet reaches the ceiling
     if (this.cy < this.halfHeight) {
         if(!this.powerupBullet){
             return entityManager.KILL_ME_NOW;
@@ -71,6 +74,7 @@ Bullet.prototype.update = function (du) {
     bullet = this; // JavaScript is unable to recognize 'this' in the function below
 
     entities.forEach(function(entity) {
+        /* Hanlder for then the bullet hits a brick */
         if(entity instanceof Brick) { 
             bullet.takeHit();
             entity.takeHit();
@@ -80,12 +84,14 @@ Bullet.prototype.update = function (du) {
     spatialManager.register(this);
 };
 
+// handler for then the bullet takes a hit 
 Bullet.prototype.takeHit = function () {
   this.kill();
   // Make a noise when I am zapped by another bullet
   this.zappedSound.play();
 };
 
+// render the bullet
 Bullet.prototype.render = function (ctx) {
     g_sprites.bullet.drawCentredAt(
         ctx, this.cx, this.cy - this.spatialHalfHeight/2
