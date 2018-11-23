@@ -21,13 +21,13 @@ but you can only have one activated at any time.
 1. Protect life - This one protect you form losing a life if you die  
 ![alt text](src/imgs/PowerUps/HeartPu.png?raw=true)  
 
-2. 
+2. Sticky Pitchfork - This one makes your pitchfork stick to the ceiling
 ![alt text](src/imgs/PowerUps/BulletPu.png?raw=true)  
 
-3. 
+3. Double Pitchfork - This one allows you to shoot two different pitchfork at
 ![alt text](src/imgs/PowerUps/PulletPlusPu.png?raw=true)  
 
-4. 
+4. STOP! - This one stops all bad guys for a shot period of time
 ![alt text](src/imgs/PowerUps/StopPu.png?raw=true)  
 
 
