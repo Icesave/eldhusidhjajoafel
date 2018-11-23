@@ -105,19 +105,21 @@ function processDiagnostics() {
             console.log("---------------------------");
         }
     }
-    if (eatKey(INFO)) { // Get info about all entities
-        console.log("DEBUG: All Entities");
-        entityManager.allEntities().forEach(function (entity) {
-            console.dir(entity);
-        });
-        console.log("---------------------------");
-    }
-    if (eatKey(KILL)) { // Kill a ball
-        console.log("DEBUG: Kill ball");
-        if (entityManager._balls.length > 0) {
-            entityManager._balls[0].takeHit();
+    if (g_debugMode) {
+        if (eatKey(INFO)) { // Get info about all entities
+            console.log("DEBUG: All Entities");
+            entityManager.allEntities().forEach(function (entity) {
+                console.dir(entity);
+            });
+            console.log("---------------------------");
         }
-        console.log("---------------------------");
+        if (eatKey(KILL)) { // Kill a ball
+            console.log("DEBUG: Kill ball");
+            if (entityManager._balls.length > 0) {
+                entityManager._balls[0].takeHit();
+            }
+            console.log("---------------------------");
+        }
     }
 
     if (eatKey(KEY_SPATIAL) && g_debugMode) {
@@ -206,7 +208,7 @@ function requestPreloads() {
         lifePu: "imgs/PowerUps/HeartPu.png",
         bulletPu: "imgs/PowerUps/BulletPu.png",
         bulletPlusPu: "imgs/PowerUps/PulletPlusPu.png",
-        stopPu: "imgs/PowerUps/stopPu.png",
+        stopPu: "imgs/PowerUps/StopPu.png",
 
         menuDemon: "imgs/Demon/demonFront.png",
         menuBg: "imgs/Backgrounds/menuBg.png"
