@@ -1,8 +1,6 @@
-// ============
-// BRICK STUFF
-// ============
-
-// COMMON BRICK STUFF
+// =====
+// BRICK
+// =====
 
 // A generic contructor which accepts an arbitrary descriptor object
 function Brick(descr) {
@@ -11,11 +9,11 @@ function Brick(descr) {
     this.spatialHalfWidth = this.halfWidth;
     this.spatialHalfHeight = this.halfHeight;
 
-    if(this.breakable) {
+    if(this.breakable) { // Breakable bricks are white 
         this.strokeStyle = "#790000";
         this.fillStyle = "080808";
     } 
-    else {
+    else { // Unbreakable bricks are grey
         this.strokeStyle = "#790000";
         this.fillStyle = "#808080";
 
@@ -65,25 +63,3 @@ Brick.prototype.takeHit = function() {
         this.kill();
     }
 }
-
-// Geyma?
-
-/* 
-Brick.prototype.collidesWith = function (prevX, prevY, 
-                                          nextX, nextY, 
-                                          r) {
-    varBrickEdge = this.cx;
-    // Check X coords
-    if ((nextX - r <BrickEdge && prevX - r >=BrickEdge) ||
-        (nextX + r >BrickEdge && prevX + r <=BrickEdge)) {
-        // Check Y coords
-        if (nextY + r >= this.cy - this.halfHeight &&
-            nextY - r <= this.cy + this.halfHeight) {
-            // It's a hit!
-            return true;
-        }
-    }
-    // It's a miss!
-    return false;
-};
-*/ 

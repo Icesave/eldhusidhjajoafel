@@ -29,7 +29,7 @@ var Levels = [
     {
         title: "Level 3",
         background: "imgs/Backgrounds/Hellbg.png",
-        balls: [[250, 200, 2, -10],
+        balls: [[250, 200, -2, -10],
                 [550, 200, 2, -10],
                 [825, 150, 2, -10]],
         bricks: [[850, 200, 150, 4, true],
