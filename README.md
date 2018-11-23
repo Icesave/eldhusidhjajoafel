@@ -2,4 +2,4 @@
 
 Vóh-vóh
 
-![alt text](src/imgs/bubbleboi.png?raw=true "Title")
+![alt text](src/imgs/bubbleboi.png?raw=true)
