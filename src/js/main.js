@@ -92,7 +92,7 @@ var main = {
   */
   _debugRender: function(ctx) {
 
-    if(eatKey(TOGGLE_TIMER_SHOW)) {
+    if(eatKey(TOGGLE_TIMER_SHOW) && g_debugMode) {
       this._doTimerShow = !this._doTimerShow;
     }
 

@@ -107,10 +107,8 @@ Ball.prototype.update = function (du) {
             var x = entity.getPos().posX,
                 y = entity.getPos().posY;
             if(ball.colliding == "x" || ball.colliding == ""){
-                if(prevX < x && ball.xVel > 0) {
-                    ball.xVel *= -1;
-                }
-                else if(prevY > x && ball.xVel < 0) {
+                if( (prevX < x && ball.xVel > 0) || 
+                    (prevX > x && ball.xVel < 0)) {
                     ball.xVel *= -1;
                 }
             } 
@@ -138,6 +136,7 @@ Ball.prototype.undoPause= function (){
     
 }
 
+// get the radius that is used by the spatialmanager
 Ball.prototype.getSpatialRadius = function () {
     return this.scale * (this.sprite.width / 2) * 0.6;
 };
@@ -147,6 +146,7 @@ Ball.prototype.setPause = function () {
     this.pause = true;
 }
 
+// handler for when the balls takes a hit
 Ball.prototype.takeHit = function () {
     this.kill();
     // Powerup drops down

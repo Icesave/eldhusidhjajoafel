@@ -63,11 +63,11 @@ var KEY_RESET = keyCode('R');
 
 function processDiagnostics() {
 
-    if (eatKey(KEY_SPATIAL)) {
+    if(eatKey(KEY_SPATIAL) && g_debugMode) {
         g_renderSpatialDebug = !g_renderSpatialDebug;
     }
 
-    if (eatKey(KEY_RESET)) {
+    if(eatKey(KEY_RESET) && g_debugMode) {
         RESET = true;
     }
 
