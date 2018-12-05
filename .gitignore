@@ -8,6 +8,9 @@ yarn-error.log*
 # Private make files
 makefile
 
+# Zip files
+BubbleTrouble.zip
+
 # Runtime data
 pids
 *.pid
